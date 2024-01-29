@@ -2,7 +2,7 @@
 
 const TopNav = () => {
   return (
-    <div className="px-0 md:px-[60px] lg:px-[100px]">
+    <div className="px-0 md:px-[60px] lg:px-[100px] h-[70px]">
       <div>
         <div className="brand">
           Odilo
