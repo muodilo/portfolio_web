@@ -3,7 +3,7 @@ import { RiMenu5Line } from "react-icons/ri";
 
 const TopNav = () => {
   return (
-    <div className="px-0 md:px-[60px] lg:px-[100px] shadow fixed left-0 right-0 bg-slate-100">
+    <div className="px-0 md:px-[60px] lg:px-[100px] shadow fixed left-0 right-0  bg-cyan-50">
       <div className="flex items-center min-h-[70px] justify-between w-full px-[10px] md:px-0">
         {/* brand */}
 

@@ -1,0 +1,5 @@
+.service__card{
+  border: 1px solid cyan;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
