@@ -1,5 +1,6 @@
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom"
 import TopNav from "./components/topNav/TopNav"
+import Layout from "./pages/layout/Layout"
 
 function App() {
 
@@ -8,7 +9,7 @@ function App() {
       <TopNav />
 
       <Routes>
-        <Route/>
+        <Route path='/' element={<Layout/> } />
       </Routes>
 
     </Router>
