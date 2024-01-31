@@ -16,7 +16,7 @@ const Header = () => {
         {/* right side of header */}
         <div className="lg:col-span-2 md:col-span-1 flex items-center p-3">
           
-            <img src={ M3} alt="" className='rounded-[20px] shadow-lg animate-in fade-in zoom-in duration-300'/>
+            <img src={ M3} alt="" className='rounded-[20px] shadow-2xl animate-in fade-in zoom-in duration-300'/>
           
         </div>
       </div>
