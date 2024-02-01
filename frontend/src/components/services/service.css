@@ -1,5 +1,10 @@
 .service__card{
-  border: 1px solid cyan;
+  border: 1px solid rgba(128, 128, 128, 0.235);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.service__title{
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
 }
