@@ -1,8 +1,8 @@
-import React from 'react'
+
 
 const LatestBlogs = () => {
   return (
-    <section>
+    <section className="px-0 md:px-[60px] lg:px-[100px] pb-[60px] h-svh">
       
     </section>
   )
