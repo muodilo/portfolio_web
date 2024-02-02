@@ -13,7 +13,7 @@ const Services = () => {
               <h1 className="text-center text-[25px] text-white">Full Stack Development</h1>
             </div>
             <div>
-              <p className="text-gray-600 px-3 pt-5 pb-5 text-xl">Expertise in both frontend and backend technologies, delivering comprehensive solutions. Proficient in languages such as JavaScript, Python, and Java, with experience in frameworks like React, Angular, and Node.js.</p>
+              <p className="text-gray-950 px-3 pt-5 pb-5 text-xl z-20">Expertise in both frontend and backend technologies, delivering comprehensive solutions. Proficient in languages such as JavaScript, Python, and Java, with experience in frameworks like React, Angular, and Node.js.</p>
             </div>
           </div>
           <div className="shadow-2xl service__card bg-slate-100">

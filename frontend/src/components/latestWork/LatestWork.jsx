@@ -8,7 +8,7 @@ const LatestWork = () => {
       <h1 className="text-center text-slate-600 font-bold text-[20px] mt-[40px]">My Recent Work</h1>
       <h1 className="text-center font-bold text-[40px] mb-[30px] text-blue-900">Portfolio</h1>
       
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 px-3">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 px-3 mb-[">
         <div className='border border-blue-400 rounded-3xl bg-blue-300/50 hover:bg-transparent transition duration-300 shadow-2xl'>
           <div className='m-5 rounded-3xl overflow-hidden'>
             <img src="https://images.pexels.com/photos/38544/imac-apple-mockup-app-38544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
@@ -43,12 +43,12 @@ const LatestWork = () => {
             <a href="" className=' btn'>Live Demo</a>
           </div>
         </div>
-        <div className='text-center mx-auto col-span-3'>
-        <Link to=''  className='text-center btn btn-neutral'>Explore More <FaLongArrowAltRight /></Link>
-
-        </div>
 
       </div>
+        <div className='text-center col-span-3'>
+        <Link to='/projects'  className='text-center btn btn-neutral animate-bounce ease-linear'>Explore More Projects <FaLongArrowAltRight /></Link>
+
+        </div>
     </section>
   )
 }

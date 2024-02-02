@@ -3,7 +3,7 @@ import M3 from '../../assets/odilo3.jpg'
 
 const Header = () => {
   return (
-    <section className="px-0 md:px-[60px] lg:px-[100px] pt-[105px] bg-slate-100 pb-[30px] shadow-2xl" id='header'>
+    <section className="px-0 md:px-[60px] lg:px-[100px] pt-[80px] bg-slate-100 pb-[30px] shadow-2xl" id='header'>
       <div className="grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 h-full">
         {/* left side of header */}
         <div className="lg:col-span-3 md:col-span-1 p-4 flex flex-col  justify-center animate-in slide-in-from-left duration-300">
