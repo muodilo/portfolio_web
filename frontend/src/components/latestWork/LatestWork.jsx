@@ -9,7 +9,7 @@ const LatestWork = () => {
       <h1 className="text-center font-bold text-[40px] mb-[30px] text-blue-900">Portfolio</h1>
       
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 px-3 mb-[">
-        <div className='border border-blue-400 rounded-3xl bg-blue-300/50 hover:bg-transparent transition duration-300 shadow-2xl'>
+        <div className='border border-blue-400 rounded-3xl bg-blue-300/50 hover:bg-transparent transition duration-300 shadow-xl'>
           <div className='m-5 rounded-3xl overflow-hidden'>
             <img src="https://images.pexels.com/photos/38544/imac-apple-mockup-app-38544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
           </div>
@@ -21,7 +21,7 @@ const LatestWork = () => {
         </div>
 
         
-        <div className='border border-blue-400 rounded-3xl bg-blue-300/50 hover:bg-transparent transition duration-300 shadow-2xl'>
+        <div className='border border-blue-400 rounded-3xl bg-blue-300/50 hover:bg-transparent transition duration-300 shadow-xl'>
           <div className='m-5 rounded-3xl overflow-hidden'>
             <img src="https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
           </div>
@@ -33,7 +33,7 @@ const LatestWork = () => {
         </div>
 
         
-        <div className='border border-blue-400 rounded-3xl bg-blue-300/50 hover:bg-transparent transition duration-300 shadow-2xl'>
+        <div className='border border-blue-400 rounded-3xl bg-blue-300/50 hover:bg-transparent transition duration-300 shadow-xl'>
           <div className='m-5 rounded-3xl overflow-hidden'>
             <img src="https://images.pexels.com/photos/6633921/pexels-photo-6633921.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
           </div>
