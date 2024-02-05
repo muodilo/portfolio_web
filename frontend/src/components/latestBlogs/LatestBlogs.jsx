@@ -4,7 +4,8 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 const LatestBlogs = () => {
   return (
     <section className="px-0 md:px-[60px] lg:px-[100px] pb-[60px] bg-blue-300/50 ">
-      <h1 className="text-center text-slate-600 font-bold text-[20px] pt-[40px]">Thought on Technology</h1>
+      <h1 className="text-center text-slate-600 font-bold text-[20px] pt-[40px]">Thoughts63
+      + on Technology</h1>
       <h1 className="text-center font-bold text-[40px] mb-[30px] text-blue-900">Latest Blogs</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-3">
