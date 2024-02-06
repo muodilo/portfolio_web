@@ -3,7 +3,6 @@ import Services from "../../components/services/Services"
 import LatestWork from "../../components/latestWork/LatestWork"
 import LatestBlogs from "../../components/latestBlogs/LatestBlogs"
 import Testimanials from "../../components/testimonials/Testimonials"
-import Footer from "../../components/footer/Footer"
 
 const Layout = () => {
   return (
@@ -13,7 +12,6 @@ const Layout = () => {
       <LatestWork />
       <LatestBlogs />
       <Testimanials />
-      <Footer/>
     </div>
   )
 }

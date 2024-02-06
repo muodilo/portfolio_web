@@ -7,7 +7,7 @@ const Footer = () => {
   <div className="container px-5 py-24 mx-auto">
       <div className=" grid lg:grid-cols-3 grid-cols-1 gap-10">
       <div className="w-full px-4 text-center">
-            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3 text-2xl">ODILO</h2>
+            <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3 text-3xl ">ODILO</h2>
         <nav className="list-none mb-10 flex md:flex-row flex-col justify-center gap-6">
           <li>
             <Link className="text-gray-600 hover:text-gray-800">Home</Link>
