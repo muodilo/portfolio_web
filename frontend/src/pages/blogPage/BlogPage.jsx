@@ -1,9 +1,10 @@
 import BlogHeader from "../../components/blogHeader/BlogHeader"
-
+import BlogsContainer from "../../components/BlogsContainer/BlogsContainer"
 const BlogPage = () => {
   return (
     <div>
-      <BlogHeader/>
+      <BlogHeader />
+      <BlogsContainer/>
     </div>
   )
 }
