@@ -4,9 +4,6 @@ const app = express();
 app.get('/', (req, res) => {
   res.json({ message: 'hello' });
 })
-app.post('/', (req, res) => {
-  res.json({ message: 'hello' });
-})
 
 
 
