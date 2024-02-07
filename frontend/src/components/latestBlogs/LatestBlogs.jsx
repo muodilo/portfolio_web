@@ -11,7 +11,7 @@ const LatestBlogs = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-3">
       <div className="bg-slate-100 rounded">
         <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-          <img className="lg:h-48 md:h-36 w-full object-cover object-center" src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600" alt="blog"/>
+          <img className="lg:h-48 md:h-36 w-full object-cover object-center hover:scale-110 duration-100" src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600" alt="blog"/>
           <div className="p-6">
             <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">The Catalyzer</h1>
@@ -41,7 +41,7 @@ const LatestBlogs = () => {
         
       <div className="bg-slate-100 rounded">
         <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-          <img className="lg:h-48 md:h-36 w-full object-cover object-center" src="https://images.pexels.com/photos/9028873/pexels-photo-9028873.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="blog"/>
+          <img className="lg:h-48 md:h-36 w-full object-cover object-center hover:scale-110 duration-100" src="https://images.pexels.com/photos/9028873/pexels-photo-9028873.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="blog"/>
           <div className="p-6">
             <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">The Catalyzer</h1>
@@ -71,7 +71,7 @@ const LatestBlogs = () => {
         
       <div className="bg-slate-100 rounded">
         <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-          <img className="lg:h-48 md:h-36 w-full object-cover object-center" src="https://images.pexels.com/photos/8728388/pexels-photo-8728388.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="blog"/>
+          <img className="lg:h-48 md:h-36 w-full object-cover object-center hover:scale-110 duration-100" src="https://images.pexels.com/photos/8728388/pexels-photo-8728388.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="blog"/>
           <div className="p-6">
             <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">The Catalyzer</h1>
@@ -106,7 +106,7 @@ const LatestBlogs = () => {
       </div>
 
       <div className='text-center col-span-3'>
-        <Link to='/projects'  className='text-center btn btn-neutral animate-bounce ease-linear'>Explore More Blogs <FaLongArrowAltRight /></Link>
+        <Link to='/blog'  className='text-center btn btn-neutral animate-bounce ease-linear'>Explore More Blogs <FaLongArrowAltRight /></Link>
 
         </div>
       

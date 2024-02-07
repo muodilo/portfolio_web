@@ -28,9 +28,6 @@ const TopNav = () => {
           <li className='me-5'>
             <Link to='/contact' className=" text-xl text-white hover:text-blue-900 transition">Contact</Link>
           </li>
-          <li className='me-5'>
-            <Link to='/services' className=" text-xl text-white hover:text-blue-900 transition">Services</Link>
-          </li>
         </ul>
 
         {/* book a call button */}
@@ -55,9 +52,6 @@ const TopNav = () => {
           </li>
           <li className='me-5  transition'>
             <Link to='/contact'>Contact</Link>
-          </li>
-          <li className='me-5  transition'>
-            <Link to='/services'>Services</Link>
           </li>
           </ul>
         </div>
