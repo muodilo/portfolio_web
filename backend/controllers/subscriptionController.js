@@ -3,7 +3,7 @@ const Subscription = require('../models/Subscription.js');
 
 //subscribe to a newslatter
 
-export const subscribe = asynchandler(async (req, res) => {
+const subscribe = asynchandler(async (req, res) => {
   const { email } = req.body;
 
   if (!email) {
@@ -33,3 +33,7 @@ export const subscribe = asynchandler(async (req, res) => {
     throw new Error(error.message);
   }
 })
+
+module.exports = {
+  subscribe
+}
