@@ -18,6 +18,11 @@ export const subscribe = asynchandler(async (req, res) => {
       res.status(403);
       throw new Error('Already subscribed');
     }
+
+    const subscriber = await Subscription.create({
+      email,
+      role:'subscriber',
+    })
   } catch (error) {
     
   }
