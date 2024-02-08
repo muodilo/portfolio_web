@@ -3,7 +3,7 @@ const Subscription = require('../models/Subscription.js');
 
 //subscribe to a newslatter
 
-const subscribe = asynchandler(async (req, res) => {
+const subscribe = asyncHandler(async (req, res) => {
   const { email } = req.body;
 
   if (!email) {
@@ -13,7 +13,7 @@ const subscribe = asynchandler(async (req, res) => {
 
   try {
     //check if allready subscribed
-    const subscribedEmail = await Subscription({ email });
+    const subscribedEmail = await Subscription.findOne({ email });
     if (subscribedEmail) {
       res.status(403);
       throw new Error('Already subscribed');
