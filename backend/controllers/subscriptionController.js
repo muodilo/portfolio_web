@@ -23,7 +23,13 @@ export const subscribe = asynchandler(async (req, res) => {
       email,
       role:'subscriber',
     })
+
+    res.status(201).json({
+      id: subscriber._id,
+      email:subscriber.email,
+    })
   } catch (error) {
-    
+    res.status(400)
+    throw new Error(error.message);
   }
 })
