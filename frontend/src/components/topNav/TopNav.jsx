@@ -3,30 +3,30 @@ import { RiMenu5Line } from "react-icons/ri";
 
 const TopNav = () => {
   return (
-    <div className="px-0 md:px-[60px] lg:px-[100px] shadow-xl fixed left-0 right-0  bg-blue-300 z-50">
+    <div className="px-0 md:px-[60px] lg:px-[100px] shadow-xl fixed left-0 right-0  bg-blue-300/95 z-50">
       <div className="flex items-center min-h-[70px] justify-between w-full px-[10px] md:px-0">
         {/* brand */}
 
         <div className="">
-          <Link to='/' className="text-3xl text-white font-bold">ODI<span className="text-blue-900 font-bold">LO</span> </Link>
+          <Link to='/' className="text-3xl text-white font-bold">Odilo. </Link>
         </div>
 
         {/* nav Links */}
         <ul className="md:flex hidden">
           <li className='me-5'>
-            <Link to='/' className=" text-xl hover:text-blue-900 transition text-blue-900">Home</Link>
+            <Link to='/' className=" text-xl font-bold hover:text-blue-900 transition text-blue-900">Home</Link>
           </li>
           <li className='me-5'>
-            <Link to='/about' className=" text-xl text-white hover:text-blue-900 transition">About</Link>
+            <Link to='/about' className=" text-xl font-bold text-white hover:text-blue-900 transition">About</Link>
           </li>
           <li className='pe-5'>
-            <Link to='/projects' className=" text-xl text-white hover:text-blue-900 transition">Projects</Link>
+            <Link to='/projects' className=" text-xl font-bold text-white hover:text-blue-900 transition">Projects</Link>
           </li>
           <li className='me-5'>
-            <Link to='/blog' className=" text-xl text-white hover:text-blue-900 transition">Blog</Link>
+            <Link to='/blog' className=" text-xl font-bold text-white hover:text-blue-900 transition">Blog</Link>
           </li>
           <li className='me-5'>
-            <Link to='/contact' className=" text-xl text-white hover:text-blue-900 transition">Contact</Link>
+            <Link to='/contact' className=" text-xl font-bold text-white hover:text-blue-900 transition">Contact</Link>
           </li>
         </ul>
 

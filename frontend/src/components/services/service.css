@@ -6,7 +6,7 @@
 }
 
 .service__title{
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
-  background-image: url(https://images.pexels.com/photos/8533647/pexels-photo-8533647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  /* background-image: url(https://images.pexels.com/photos/8533647/pexels-photo-8533647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); */
 }
