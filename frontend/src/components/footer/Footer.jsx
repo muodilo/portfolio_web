@@ -10,9 +10,10 @@ const Footer = () => {
     setEmail(e.target.value)
   }
 
-  const handleSubmit = () => {
-    
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <footer className="text-gray-600 body-font bg-blue-200">
   <div className="container px-5 py-24 mx-auto">
@@ -47,7 +48,7 @@ const Footer = () => {
 
       <div className="px-4 flex flex-col items-start">
         <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">SUBSCRIBE TO MY NEWSLETTER</h2>
-        <form className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
+        <form className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start" onSubmit={handleSubmit}>
           <div className="relative w-40 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
             <label htmlFor="footer-field" className="leading-7 text-sm text-gray-600">Enter your email</label>
                 <input
