@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import { MdArrowOutward } from "react-icons/md";
 import { useState } from 'react';
+import axios from 'axios';
+import {  toast } from 'react-toastify';
 
 const Footer = () => {
 
@@ -10,8 +12,20 @@ const Footer = () => {
     setEmail(e.target.value)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/v1/subscribe', {
+        email: email,
+      });
+      if (response.status === 201) {
+        toast.success('Successfully subscribed!');
+      } else if (response.status === 403) {
+        toast.info('Already subscribed');
+      }
+    } catch (error) {
+      toast.error('Failed to subscribe. Please try again');
+    }
   };
 
   return (

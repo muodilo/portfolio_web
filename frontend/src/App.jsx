@@ -1,4 +1,6 @@
-import { BrowserRouter as Router,Routes,Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import TopNav from "./components/topNav/TopNav"
 import Layout from "./pages/layout/Layout"
 import Footer from "./components/footer/Footer"
@@ -14,7 +16,8 @@ function App() {
         <Route path='/' element={<Layout/> } />
         <Route path='/blog' element={<BlogPage/> } />
       </Routes>
-      <Footer/>
+      <Footer />
+      <ToastContainer/>
     </Router>
   )
 }
