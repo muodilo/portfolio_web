@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom"
 import { MdArrowOutward } from "react-icons/md";
+import { useState } from 'react';
 
 const Footer = () => {
+
+  const [email, setEmail] = useState('');
+
+  const handleChange = (e) => {
+    setEmail(e.target.value)
+  }
+
+  const handleSubmit = () => {
+    
+  }
   return (
     <footer className="text-gray-600 body-font bg-blue-200">
   <div className="container px-5 py-24 mx-auto">
@@ -36,15 +47,23 @@ const Footer = () => {
 
       <div className="px-4 flex flex-col items-start">
         <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">SUBSCRIBE TO MY NEWSLETTER</h2>
-        <div className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
+        <form className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
           <div className="relative w-40 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
-            <label for="footer-field" className="leading-7 text-sm text-gray-600">Enter your email</label>
-            <input type="text" id="footer-field" name="footer-field" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+            <label htmlFor="footer-field" className="leading-7 text-sm text-gray-600">Enter your email</label>
+                <input
+                  type="email"
+                  id="footer-field"
+                  name="footer-field"
+                  value={email}
+                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  required
+                  onChange={handleChange}
+                />
           </div>
-          <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">SUBSCRIBE</button>
-        </div>
-        <p className="text-gray-500 text-sm mt-2 md:text-left text-center">Bitters chicharrones fanny pack
-          <br className="lg:block hidden"/>waistcoat green juice
+          <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" type="submit">SUBSCRIBE</button>
+        </form>
+            <p className="text-gray-500 text-sm mt-2 md:text-left text-center">Join 10,000+ designers and get creative site breakdowns, 
+          <br className="lg:block hidden"/>design musings and tips every Monday.
         </p>
       </div>
     </div>
@@ -65,7 +84,7 @@ const Footer = () => {
           </svg>
         </a>
         <a className="ml-3 text-gray-500">
-          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
+          <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
             <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
           </svg>
         </a>
