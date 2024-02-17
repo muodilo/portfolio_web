@@ -15,8 +15,7 @@ const subscribe = asyncHandler(async (req, res) => {
     //check if allready subscribed
     const subscribedEmail = await Subscription.findOne({ email });
     if (subscribedEmail) { 
-      res.status(403);
-      throw new Error('Already subscribed');
+      res.status(403).json({ message:'Already subscribed'})
     }
 
     const subscriber = await Subscription.create({

@@ -24,7 +24,9 @@ const Footer = () => {
         toast.info('Already subscribed');
       }
     } catch (error) {
-      toast.error('Failed to subscribe. Please try again');
+      toast.info('Already subscribed');
+    } finally {
+      setEmail('');
     }
   };
 
