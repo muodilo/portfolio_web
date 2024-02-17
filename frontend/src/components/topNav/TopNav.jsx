@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import { RiMenu5Line } from "react-icons/ri";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 const TopNav = () => {
-  const [activeNav, setActiveNav] = useState('Home');
+  // Load activeNav from localStorage on component mount
+  const [activeNav, setActiveNav] = useState(localStorage.getItem('activeNav') || 'Home');
+
+  // Update localStorage when activeNav changes
+  useEffect(() => {
+    localStorage.setItem('activeNav', activeNav);
+  }, [activeNav]);
 
   return (
     <div className="px-0 md:px-[60px] lg:px-[100px] shadow-xl fixed left-0 right-0 bg-blue-300/95 z-50">
