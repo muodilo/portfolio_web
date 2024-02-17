@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { RiMenu5Line } from "react-icons/ri";
+import { useState } from 'react';
 
 const TopNav = () => {
+  const [activeNav, setActiveNav] = useState('Home');
+
   return (
-    <div className="px-0 md:px-[60px] lg:px-[100px] shadow-xl fixed left-0 right-0  bg-blue-300/95 z-50">
+    <div className="px-0 md:px-[60px] lg:px-[100px] shadow-xl fixed left-0 right-0 bg-blue-300/95 z-50">
       <div className="flex items-center min-h-[70px] justify-between w-full px-[10px] md:px-0">
         {/* brand */}
-
         <div className="">
           <Link to='/' className="text-3xl text-white font-bold">Odilo. </Link>
         </div>
@@ -14,19 +16,45 @@ const TopNav = () => {
         {/* nav Links */}
         <ul className="md:flex hidden">
           <li className='me-5'>
-            <Link to='/' className=" text-xl font-bold hover:text-blue-900 transition text-blue-900">Home</Link>
+            <Link
+              to='/'
+              className={`text-xl font-bold hover:text-blue-900 transition ${activeNav === 'Home' ? 'text-blue-900' : 'text-white'}`}
+              onClick={() => setActiveNav('Home')}
+            >
+              Home
+            </Link>
           </li>
           <li className='me-5'>
-            <Link to='/about' className=" text-xl font-bold text-white hover:text-blue-900 transition">About</Link>
+            <Link to='/about'
+              className={`text-xl font-bold hover:text-blue-900 transition ${activeNav === 'About' ? 'text-blue-900' : 'text-white'}`}
+              onClick={() => setActiveNav('About')}
+            >
+              About
+            </Link>
           </li>
           <li className='pe-5'>
-            <Link to='/projects' className=" text-xl font-bold text-white hover:text-blue-900 transition">Projects</Link>
+            <Link to='/projects'
+              className={`text-xl font-bold hover:text-blue-900 transition ${activeNav === 'Projects' ? 'text-blue-900' : 'text-white'}`}
+              onClick={() => setActiveNav('Projects')}
+            >
+              Projects
+            </Link>
           </li>
           <li className='me-5'>
-            <Link to='/blog' className=" text-xl font-bold text-white hover:text-blue-900 transition">Blog</Link>
+            <Link to='/blog'
+              className={`text-xl font-bold  hover:text-blue-900 transition ${activeNav === 'Blog' ? 'text-blue-900' : 'text-white'}`}
+              onClick={() => setActiveNav('Blog')}
+            >
+              Blog
+            </Link>
           </li>
           <li className='me-5'>
-            <Link to='/contact' className=" text-xl font-bold text-white hover:text-blue-900 transition">Contact</Link>
+            <Link to='/contact'
+              className={`text-xl font-bold  hover:text-blue-900 transition ${activeNav === 'Contact' ? 'text-blue-900' : 'text-white'}`}
+              onClick={() => setActiveNav('Contact')}
+            >
+              Contact
+            </Link>
           </li>
         </ul>
 
