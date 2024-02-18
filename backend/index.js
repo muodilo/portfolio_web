@@ -15,7 +15,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
-app.use('/api/v1',require('./routes/subscribeRoute.js'))
+app.use('/api/v1/subscribe', require('./routes/subscribeRoute.js'));
+app.use('/api/v1/posts',require('./routes/postsRoutes.js'))
 
 
 app.use(errorHandler);
