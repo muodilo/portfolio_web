@@ -12,9 +12,13 @@ const postSchema = new mongoose.Schema({
   image: {
     type:String,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
   category: {
     type: String,
-    enum:[Business,Software_development, Tutorials,Technology]
+    enum:['Business','Software development', 'Tutorials','Technology']
   }
 }, {
   timestamps:true,
