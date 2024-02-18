@@ -12,7 +12,7 @@ const createPost = asyncHandler(async (req, res) => {
 
   try {
     //create post in database
-    const post = await Poost.create({
+    const post = await Post.create({
       title,
       content,
       image,
