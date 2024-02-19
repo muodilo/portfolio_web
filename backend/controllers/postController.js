@@ -25,7 +25,7 @@ const createPost = asyncHandler(async (req, res) => {
       error: 'Internal Server Error',
     })
   }
-})
+});
 
 const getAllPosts = asyncHandler(async (req, res) => {
   try {
@@ -40,13 +40,32 @@ const getAllPosts = asyncHandler(async (req, res) => {
   } catch (error) {
     console.log(error)
     res.status(500).json({
-      error:'Internal server error',
+      error: 'Internal server error',
     })
   }
-})
+});
+
+const getCurrentThreePosts = asyncHandler(async (req, res) => {
+  try {
+    // Query the database to retrieve the current three posts
+    const posts = await Post.find().limit(3);
+
+    if (!posts || posts.length === 0) {
+      res.status(404).json({ error: 'There are no posts available' });
+    } else {
+      res.status(200).json(posts);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: 'Internal server error',
+    });
+  }
+});
 
 module.exports = {
   createPost,
-  getAllPosts
+  getAllPosts,
+  getCurrentThreePosts,
 }
 
