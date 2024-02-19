@@ -29,7 +29,7 @@ const createPost = asyncHandler(async (req, res) => {
 
 const getAllPosts = asyncHandler(async (req, res) => {
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.find();
     if (!posts) {
       res.status(400);
       throw new Error('There is no post yet available');
@@ -38,6 +38,7 @@ const getAllPosts = asyncHandler(async (req, res) => {
     }
 
   } catch (error) {
+    console.log(error)
     res.status(500).json({
       error:'Internal server error',
     })
