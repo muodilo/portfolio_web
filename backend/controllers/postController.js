@@ -27,7 +27,25 @@ const createPost = asyncHandler(async (req, res) => {
   }
 })
 
+const getAllPosts = asyncHandler(async (req, res) => {
+  try {
+    const posts = await Post.findAll();
+    if (!posts) {
+      res.status(400);
+      throw new Error('There is no post yet available');
+    } else {
+      res.status(200).json(posts);
+    }
+
+  } catch (error) {
+    res.status(500).json({
+      error:'Internal server error',
+    })
+  }
+})
+
 module.exports = {
   createPost,
+  getAllPosts
 }
 
