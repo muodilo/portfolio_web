@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatDistanceToNow } from 'date-fns';
 
 const BlogCard = ({ post }) => {
   
@@ -9,6 +10,8 @@ const BlogCard = ({ post }) => {
     const truncatedContent = truncatedWords.join(' ');
     return truncatedContent;
   };
+   // Calculate time ago
+  const postedTimeAgo = formatDistanceToNow(new Date(post.createdAt), { addSuffix: true });
 
   return (
     <div className="bg-slate-100 rounded">
@@ -19,8 +22,8 @@ const BlogCard = ({ post }) => {
           <h1 className="title-font text-lg font-medium text-gray-900 mb-3">{ post.title}</h1>
         <p className="leading-relaxed mb-3">{truncateContent(post.content, 10)}</p>
         <div className="flex items-center flex-wrap ">
-          <a className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">posted: 2h ago
-          </a>
+          <span className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">posted {postedTimeAgo}
+          </span>
 
         </div>
       </div>
