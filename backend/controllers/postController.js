@@ -47,8 +47,8 @@ const getAllPosts = asyncHandler(async (req, res) => {
 
 const getCurrentThreePosts = asyncHandler(async (req, res) => {
   try {
-    // Query the database to retrieve the current three posts
-    const posts = await Post.find().limit(3);
+    // Query the database to retrieve the three most recent posts
+    const posts = await Post.find().sort({ createdAt: -1 }).limit(3);
 
     if (!posts || posts.length === 0) {
       res.status(404).json({ error: 'There are no posts available' });
