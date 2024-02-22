@@ -29,7 +29,7 @@ const createPost = asyncHandler(async (req, res) => {
 
 const getAllPosts = asyncHandler(async (req, res) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().sort({ createdAt: -1 });
     if (!posts) {
       res.status(400);
       throw new Error('There is no post yet available');
