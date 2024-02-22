@@ -19,6 +19,16 @@ export const getCurrentThreePosts = createAsyncThunk('get/getCurrentThreePosts',
   }
 })
 
+export const getAllPosts = createAsyncThunk('get/getAllPosts', async (_, thunkAPI) => {
+  try {
+    return await 
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+
+    return thunkAPI.rejectWithValue(message);
+  }
+})
+
 export const postSlice = createSlice({
   name: 'post',
   initialState,
