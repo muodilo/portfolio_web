@@ -8,7 +8,7 @@ import SkeletonCard from "./SkeletonCard";
 
 const LatestBlogs = () => {
   const dispatch = useDispatch();
-  const { currentPosts } = useSelector(state => state.reducer.posts)
+  const { currentPosts,isCurrentPostsLoading,isCurrentPostsError,isCurrentPostsSuccess } = useSelector(state => state.reducer.posts)
   
   useEffect(() => {
     const fetchData = async () => {
@@ -32,13 +32,14 @@ const LatestBlogs = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-3">
 
-        {currentPosts.map((post) => (
+        {isCurrentPostsLoading && [1, 2, 3].map((post,index) => (
+          <SkeletonCard key={ index} />
+        ))}
+
+        {isCurrentPostsSuccess && currentPosts.map((post) => (
           <BlogCard key={post._id} post={post} />
         ))}
 
-        {[1, 2, 3].map((post,index) => (
-          <SkeletonCard key={ index} />
-        ))}
 
       </div>
 

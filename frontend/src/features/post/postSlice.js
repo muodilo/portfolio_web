@@ -41,12 +41,10 @@ export const postSlice = createSlice({
     reset: (state) => {
       state.isCurrentPostsLoading = false;
       state.isCurrentPostsError = false;
-      state.isCurrentPostsSuccess = false;
       state.isCurrentPostsErrorMessage = '';
 
       state.isAllPostsLoading = false;
       state.isAllPostsError = false;
-      state.isAllPostsSuccess = false;
       state.isAllPostsErrorMessage = '';
 
 
