@@ -1,6 +1,27 @@
+import { useEffect } from 'react';
 import BlogCard from "../latestBlogs/BlogCard";
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllPosts,reset } from "../../features/post/postSlice";
 
 const BlogsContainer = () => {
+  const dispatch = useDispatch();
+
+  const { allPosts } = useSelector(state => state.reducer.posts);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await dispatch(getAllPosts());
+        dispatch(reset())
+      } catch (error) {
+        console.error(error);
+        dispatch(reset())
+
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
   return (
     <section className="px-0 md:px-[60px] lg:px-[100px]">
       <div className="p-3">
@@ -15,7 +36,9 @@ const BlogsContainer = () => {
 
         
         
-
+        {allPosts.map((post) => (
+          <BlogCard key={post._id} post={post} />
+        ))}
 
 
 

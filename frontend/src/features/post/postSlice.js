@@ -3,10 +3,15 @@ import postServices from './postService';
 
 const initialState = {
   currentPosts: [],
+  allPosts:[],
   isCurrentPostsLoading: false,
   isCurrentPostsError: false,
   isCurrentPostsSuccess:false,
-  isCurrentPostsErrorMessage:false,
+  isCurrentPostsErrorMessage: '',
+  isAllPostsLoading: false,
+  isAllPostsError: false,
+  isAllPostsSuccess: false,
+  isAllPostsErrorMessage:'',
 }
 
 export const getCurrentThreePosts = createAsyncThunk('get/getCurrentThreePosts', async (_, thunkAPI) => {
@@ -21,7 +26,7 @@ export const getCurrentThreePosts = createAsyncThunk('get/getCurrentThreePosts',
 
 export const getAllPosts = createAsyncThunk('get/getAllPosts', async (_, thunkAPI) => {
   try {
-    return await 
+    return await postServices.getAllPosts();
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
 
@@ -38,6 +43,13 @@ export const postSlice = createSlice({
       state.isCurrentPostsError = false;
       state.isCurrentPostsSuccess = false;
       state.isCurrentPostsErrorMessage = '';
+
+      state.isAllPostsLoading = false;
+      state.isAllPostsError = false;
+      state.isAllPostsSuccess = false;
+      state.isAllPostsErrorMessage = '';
+
+
     }
     
   },
@@ -46,7 +58,6 @@ export const postSlice = createSlice({
       .addCase(getCurrentThreePosts.pending, (state) => {
         state.isCurrentPostsLoading = true;
       })
-    builder
       .addCase(getCurrentThreePosts.fulfilled, (state,action) => {
         state.isCurrentPostsLoading = false;
         state.isCurrentPostsSuccess = true;
@@ -56,6 +67,20 @@ export const postSlice = createSlice({
         state.isCurrentPostsLoading = false;
         state.isCurrentPostsError = true;
         state.isCurrentPostsErrorMessage = action.payload;
+      })
+
+      .addCase(getAllPosts.pending, (state) => {
+        state.isAllPostsLoading = true;
+      })
+      .addCase(getAllPosts.fulfilled, (state,action) => {
+        state.isAllPostsLoading = false;
+        state.isAllPostsSuccess = true;
+        state.allPosts = action.payload;
+      })
+      .addCase(getAllPosts.rejected, (state,action) => {
+        state.isAllPostsLoading = false;
+        state.isAllPostsError = true;
+        state.isAllPostsErrorMessage = action.payload;
       })
     
   }
