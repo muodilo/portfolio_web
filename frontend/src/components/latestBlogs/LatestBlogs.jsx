@@ -4,6 +4,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentThreePosts,reset } from '../../features/post/postSlice';
 import BlogCard from "./BlogCard";
+import SkeletonCard from "./SkeletonCard";
 
 const LatestBlogs = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,10 @@ const LatestBlogs = () => {
 
         {currentPosts.map((post) => (
           <BlogCard key={post._id} post={post} />
+        ))}
+
+        {[1, 2, 3].map((post,index) => (
+          <SkeletonCard key={ index} />
         ))}
 
       </div>
