@@ -64,7 +64,7 @@ const getCurrentThreePosts = asyncHandler(async (req, res) => {
 });
 
 const getPostById = asyncHandler(async (req, res) => {
-  const PostId = req.params.id;
+  const postId = req.params.id;
   const post = await Post.findById(postId);
   if (!post) {
     res.status(404)
