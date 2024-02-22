@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import BlogCard from "../latestBlogs/BlogCard";
+import SkeletonCard from '../latestBlogs/SkeletonCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPosts,reset } from "../../features/post/postSlice";
 
 const BlogsContainer = () => {
   const dispatch = useDispatch();
 
-  const { allPosts } = useSelector(state => state.reducer.posts);
+  const { allPosts,isAllPostsLoading,isAllPostsSuccess } = useSelector(state => state.reducer.posts);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,10 +36,14 @@ const BlogsContainer = () => {
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 animate-in fade-in zoom-in duration-300">
 
         
+        {isAllPostsLoading && [1,2,3,4,5,6].map((post,index) => (
+            <SkeletonCard key={index}  />
+          ))}
         
-        {allPosts.map((post) => (
+        {(!isAllPostsLoading && isAllPostsSuccess) && allPosts.map((post) => (
           <BlogCard key={post._id} post={post} />
         ))}
+          
 
 
 

@@ -36,7 +36,7 @@ const LatestBlogs = () => {
           <SkeletonCard key={ index} />
         ))}
 
-        {isCurrentPostsSuccess && currentPosts.map((post) => (
+        {(!isCurrentPostsLoading && isCurrentPostsSuccess) && currentPosts.map((post) => (
           <BlogCard key={post._id} post={post} />
         ))}
 
