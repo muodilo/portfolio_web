@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useEffect } from 'react';
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
-import { getCurrentThreePosts } from '../../features/post/postSlice';
+import { getCurrentThreePosts,reset } from '../../features/post/postSlice';
 import BlogCard from "./BlogCard";
 
 const LatestBlogs = () => {
@@ -13,8 +13,11 @@ const LatestBlogs = () => {
     const fetchData = async () => {
       try {
         await dispatch(getCurrentThreePosts());
+        dispatch(reset())
       } catch (error) {
         console.error(error);
+        dispatch(reset())
+
       }
     };
 
