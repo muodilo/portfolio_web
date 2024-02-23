@@ -4,7 +4,8 @@ import postServices from './postService';
 const initialState = {
   currentPosts: [],
   allPosts: [],
-  singlePost:{},
+  singlePost: {},
+  relatedPosts:[],
   isCurrentPostsLoading: false,
   isCurrentPostsError: false,
   isCurrentPostsSuccess:false,
@@ -17,6 +18,10 @@ const initialState = {
   isSinglePostError: false,
   isSinglePostSuccess: false,
   isSinglePostErrorMessage:'',
+  isRelatedPostLoading: false,
+  isRelatedPostError: false,
+  isRelatedPostSuccess: false,
+  isRelatedPostErrorMessage:'',
 }
 
 export const getCurrentThreePosts = createAsyncThunk('get/getCurrentThreePosts', async (_, thunkAPI) => {
@@ -51,6 +56,16 @@ export const getSpecificPost = createAsyncThunk('post/getSpecificPost', async (i
   }
 })
 
+export const getRelatedPosts = createAsyncThunk('post/getRelatedPosts', async (category, thunkAPI) => {
+  try {
+    return await postServices.getRelatedPosts(category)
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+
+    return thunkAPI.rejectWithValue(message);
+  }
+})
+
 export const postSlice = createSlice({
   name: 'post',
   initialState,
@@ -67,6 +82,10 @@ export const postSlice = createSlice({
       state.isSinglePostLoading = false;
       state.isSinglePostError = false;
       state.isSinglePostErrorMessage = '';
+
+      state.isRelatedPostLoading = false;
+      state.isRelatedPostError = false;
+      state.isRelatedPostErrorMessage = '';
 
 
     }
@@ -114,6 +133,20 @@ export const postSlice = createSlice({
         state.isSinglePostLoading = false;
         state.isSinglePostError = true;
         state.isSinglePostErrorMessage = action.payload;
+      })
+    
+      .addCase(getRelatedPosts.pending, (state) => {
+        state.isRelatedPostLoading = true;
+      })
+      .addCase(getRelatedPosts.fulfilled, (state,action) => {
+        state.isRelatedPostLoading = false;
+        state.isRelatedPostSuccess = true;
+        state.relatedPosts = action.payload;
+      })
+      .addCase(getRelatedPosts.rejected, (state,action) => {
+        state.isRelatedPostLoading = false;
+        state.isRelatedPostError = true;
+        state.isRelatedPostErrorMessage = action.payload;
       })
     
   }
