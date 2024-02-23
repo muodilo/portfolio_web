@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getRelatedPosts, reset } from '../../features/post/postSlice';
 import { Link } from 'react-router-dom';
+import RelatedPostCard from './RelatedPostCard';
 
 const SinglePost = () => {
   const dispatch = useDispatch();
@@ -37,18 +38,10 @@ const SinglePost = () => {
         <div className='px-5 pt-12'>
           <span className="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest mb-5">RELATED POSTS</span>
 
-            <div className="   flex flex-col items-start cursor-pointer shadow-xl p-2 rounded bg-slate-50 mb-2">
-          
-                <h2 className="sm:text-2xl text-xl title-font font-medium text-gray-900 mt-4 mb-4">Roof party normcore before they sold out, cornhole vape</h2>
-                <p className="leading-relaxed">Live-edge letterpress cliche, salvia fanny pack humblebrag narwhal portland. </p>
-
-            </div>
-            <hr />
-          
+          {relatedPosts.map(post=>(
+            <RelatedPostCard key={post._id} post={post} />
             
-            
-          
-            
+          ))}
 
         </div>
 
