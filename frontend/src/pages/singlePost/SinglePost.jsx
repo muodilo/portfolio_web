@@ -1,12 +1,22 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import { getRelatedPosts, reset } from '../../features/post/postSlice';
 import { Link } from 'react-router-dom';
 
 const SinglePost = () => {
+  const dispatch = useDispatch();
 
-  const { singlePost } = useSelector(state => state.reducer.posts);
+  const {relatedPosts, singlePost } = useSelector(state => state.reducer.posts);
 
   const { title, content, image, category } = singlePost;
+
+  useEffect(() => {
+    const fetchRelatedPosts = async () => {
+      await dispatch(getRelatedPosts(category));
+      dispatch(reset());
+    }
+    fetchRelatedPosts();
+  }, [singlePost, dispatch]);
   return (
     <div className='px-0 md:px-[60px] lg:px-[100px]'>
       <div className='pt-[70px] grid lg:grid-cols-4 grid-cols-1'>
