@@ -1,7 +1,30 @@
-import React from 'react';
+
 import { formatDistanceToNow } from 'date-fns';
+import { useSelector, useDispatch } from 'react-redux';
+import { getSpecificPost, reset } from '../../features/post/postSlice';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 
 const BlogCard = ({ post }) => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isSinglePostErrorMessage} = useSelector(state => state.reducer.posts);
+
+  const handleClick = () => {
+    const fetchSinglePost = async () => {
+      try {
+        await dispatch(getSpecificPost(post._id));
+        navigate('/blog/' + post._id);
+        dispatch(reset());
+      } catch (error) {
+        toast.error(isSinglePostErrorMessage)
+      }
+    }
+    fetchSinglePost();
+    dispatch(reset());
+  }
   // Function to truncate the content to 2 lines
   const truncateContent = (content, wordCount = 10) => {
     const words = content.split(/\s+/); // Split by spaces
@@ -31,7 +54,7 @@ const BlogCard = ({ post }) => {
   };
 
   return (
-    <div className="bg-slate-100 rounded cursor-pointer">
+    <div className="bg-slate-100 rounded cursor-pointer" onClick={handleClick}>
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
         <img
           className="lg:h-48 md:h-36 w-full object-cover object-center hover:scale-110 duration-100"
