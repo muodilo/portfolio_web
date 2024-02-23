@@ -3,7 +3,8 @@ import postServices from './postService';
 
 const initialState = {
   currentPosts: [],
-  allPosts:[],
+  allPosts: [],
+  singlePost:{},
   isCurrentPostsLoading: false,
   isCurrentPostsError: false,
   isCurrentPostsSuccess:false,
@@ -12,6 +13,10 @@ const initialState = {
   isAllPostsError: false,
   isAllPostsSuccess: false,
   isAllPostsErrorMessage:'',
+  isSinglePostLoading: false,
+  isSinglePostError: false,
+  isSinglePostSuccess: false,
+  isSinglePostErrorMessage:'',
 }
 
 export const getCurrentThreePosts = createAsyncThunk('get/getCurrentThreePosts', async (_, thunkAPI) => {
@@ -34,6 +39,18 @@ export const getAllPosts = createAsyncThunk('get/getAllPosts', async (_, thunkAP
   }
 })
 
+export const getSpecificPost = createAsyncThunk('post/getSpecificPost', async (id, thunkAPI) => {
+
+  try {
+    return await postServices.getSpecificPost(id);
+    
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+
+    return thunkAPI.rejectWithValue(message);
+  }
+})
+
 export const postSlice = createSlice({
   name: 'post',
   initialState,
@@ -46,6 +63,10 @@ export const postSlice = createSlice({
       state.isAllPostsLoading = false;
       state.isAllPostsError = false;
       state.isAllPostsErrorMessage = '';
+
+      state.isSinglePostLoading = false;
+      state.isSinglePostError = false;
+      state.isSinglePostErrorMessage = '';
 
 
     }
@@ -79,6 +100,20 @@ export const postSlice = createSlice({
         state.isAllPostsLoading = false;
         state.isAllPostsError = true;
         state.isAllPostsErrorMessage = action.payload;
+      })
+
+      .addCase(getSpecificPost.pending, (state) => {
+        state.isSinglePostLoading = true;
+      })
+      .addCase(getSpecificPost.fulfilled, (state,action) => {
+        state.isSinglePostLoading = false;
+        state.isSinglePostSuccess = true;
+        state.singlePost = action.payload;
+      })
+      .addCase(getSpecificPost.rejected, (state,action) => {
+        state.isSinglePostLoading = false;
+        state.isSinglePostError = true;
+        state.isSinglePostErrorMessage = action.payload;
       })
     
   }
