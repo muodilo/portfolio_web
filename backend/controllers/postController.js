@@ -72,7 +72,7 @@ const getPostById = asyncHandler(async (req, res) => {
   }
 
   res.status(200).json(post);
-})
+
 
 module.exports = {
   createPost,

@@ -37,29 +37,49 @@ const BlogCard = ({ post }) => {
   const postedTimeAgo = formatDistanceToNow(new Date(post.createdAt), { addSuffix: true });
 
   // Share functionality
-  const handleShare = async () => {
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: post.title,
-          text: post.content,
-          url: window.location.href,
-        });
-      } else {
-        console.error('Share API not supported');
+  const handleShare = () => {
+
+    const share = async () => {
+      
+      try {
+        if (navigator.share) {
+          await navigator.share({
+            title: post.title,
+            text: post.content,
+            url: `http://localhost:5173/blog/${post._id}`,
+          });
+        } else {
+          console.error('Share API not supported');
+        }
+      } catch (error) {
+        console.error('Error sharing:', error.message);
       }
-    } catch (error) {
-      console.error('Error sharing:', error.message);
     }
+
+    const fetchSinglePost = async () => {
+      try {
+        await dispatch(getSpecificPost(post._id));
+        dispatch(reset());
+        share();
+      } catch (error) {
+        console.error(isSinglePostErrorMessage)
+      }
+    }
+
+    fetchSinglePost();
+    dispatch(reset());
+
+
   };
 
   return (
-    <div className="bg-slate-100 rounded cursor-pointer" onClick={handleClick}>
+    <div className="bg-slate-100 rounded cursor-pointer" >
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
         <img
           className="lg:h-48 md:h-36 w-full object-cover object-center hover:scale-110 duration-100"
           src={post.image}
           alt="blog"
+          onClick={handleClick}
         />
         <div className="p-6">
           <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{post.category}</h2>
@@ -69,7 +89,8 @@ const BlogCard = ({ post }) => {
             <span className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">posted {postedTimeAgo}
             </span>
             <span>
-              <button className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 ml-2" onClick={handleShare}>
+              <button className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 ml-2" onClick={handleShare}
+              >
               Share
               </button>
             </span>
