@@ -72,12 +72,33 @@ const getPostById = asyncHandler(async (req, res) => {
   }
 
   res.status(200).json(post);
+})
 
+
+const getRelatedPosts = asyncHandler(async (req, res) => {
+  const category = req.params.category;
+
+  try {
+    const posts = await Post.find({ category: category }).sort({ createdAt: -1 }).limit(3);
+
+    if (!posts || posts.length === 0) {
+      res.status(404).json({ error: 'No posts found for the specified category' });
+      throw new Error('No posts found for the specific category');
+    }
+
+    res.status(200).json(posts);
+  } catch (error) {
+    console.error(error); 
+    res.status(500);
+    throw new Error('Internal Server Error')
+  }
+})
 
 module.exports = {
   createPost,
   getAllPosts,
   getCurrentThreePosts,
   getPostById,
+  getRelatedPosts,
 }
 
