@@ -17,7 +17,7 @@ const SinglePost = () => {
           <h1 className='text-center pt-5 md:text-[50px] text-[25px] font-bold'>{ title}</h1>
           
           <div className='pt-5 shadow-2xl rounded-2xl'>
-            <img src={image} alt="image" className='rounded-2xl '/>
+            <img src={image} alt="image" className='rounded-2xl w-full'/>
           </div>
           <div className='pt-5'>
             <p>{ content}</p>
