@@ -5,6 +5,7 @@ import TopNav from "./components/topNav/TopNav"
 import Layout from "./pages/layout/Layout"
 import Footer from "./components/footer/Footer"
 import BlogPage from "./pages/blogPage/BlogPage"
+import SinglePost from "./pages/singlePost/SinglePost";
 
 function App() {
 
@@ -14,7 +15,8 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Layout/> } />
-        <Route path='/blog' element={<BlogPage/> } />
+        <Route path='/blog' element={<BlogPage />} />
+        <Route path='/blog/:id' element={<SinglePost/>}/>
       </Routes>
       <Footer />
       <ToastContainer/>

@@ -13,9 +13,15 @@ const getAllPosts = async () => {
   return response.data;
 }
 
+const getSpecificPost = async (id) => {
+  const response = await axios.get(`${GET_ALL_POSTS}/${id}`);
+  return response.data;
+}
+
 const postServices = {
   getCurrentThreePosts,
   getAllPosts,
+  getSpecificPost,
 }
 
 export default postServices;
