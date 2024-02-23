@@ -1,21 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const SinglePost = () => {
+
+  const { singlePost } = useSelector(state => state.reducer.posts);
+
+  const { title, content, image, category } = singlePost;
   return (
     <div className='px-0 md:px-[60px] lg:px-[100px]'>
       <div className='pt-[70px] grid lg:grid-cols-4 grid-cols-1'>
         <div className='col-span-3 p-5 h-svh overflow-auto'>
           <Link to='/blog' className='btn btn-default '>Back</Link>
           <hr />
-          <p className='text-center '>Category</p>
-          <h1 className='text-center pt-5 md:text-[50px] text-[25px] font-bold'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, animi.</h1>
+          <p className='text-center '>{ category}</p>
+          <h1 className='text-center pt-5 md:text-[50px] text-[25px] font-bold'>{ title}</h1>
           
           <div className='pt-5 shadow-2xl rounded-2xl'>
-            <img src="https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="image" className='rounded-2xl '/>
+            <img src={image} alt="image" className='rounded-2xl '/>
           </div>
           <div className='pt-5'>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore consectetur voluptas hic minus vitae quam cumque, sed natus odio. Iusto quam voluptates qui. Non ad quis esse a natus eaque incidunt excepturi, aliquam inventore placeat ipsam illo et totam eveniet molestias, reiciendis, autem animi error officiis veniam aliquid suscipit odio tempora? A ad corporis voluptatum doloremque iste delectus iusto optio veniam consequuntur voluptas, ut qui dolorum nulla, debitis fugit? Alias facilis iusto blanditiis reiciendis voluptatum esse ratione nisi in, iure totam odit quo itaque, vitae accusamus saepe. Fugiat enim ut fugit aut nobis nemo qui aperiam quam quod, ipsa, magnam vel. Quae aliquid, tempora assumenda quas esse animi doloribus, quam vitae, maxime optio soluta deserunt nostrum laborum deleniti architecto ipsa est eum laudantium eos reiciendis eaque quis quibusdam delectus ab. Dicta, mollitia nulla laborum assumenda recusandae, voluptatibus neque ipsum modi praesentium nobis hic qui, temporibus repellat sed incidunt fugit cupiditate aut culpa beatae explicabo doloremque soluta maiores eaque. Possimus explicabo natus numquam unde adipisci quas suscipit in, architecto, laborum dolore quis sapiente, consequuntur quisquam sed error quasi. Veritatis corporis maxime dignissimos animi quas quis quibusdam, vitae sed velit minus deleniti, exercitationem adipisci dolor eius omnis hic minima recusandae nisi voluptatem? A laboriosam repellendus odio aut pariatur quo, quaerat saepe totam provident, mollitia necessitatibus voluptates obcaecati officia minus. Reiciendis consequatur eaque cumque aspernatur nam atque ad ullam ab animi commodi consequuntur quas repellat tempore, eveniet vitae non maxime natus? Quasi earum repudiandae inventore, alias, atque mollitia nam, laborum similique praesentium vero tempore labore cumque. Natus, eaque consequatur vel blanditiis nesciunt laudantium nisi, nostrum voluptas earum iste molestias et, incidunt officia adipisci nihil? Quasi est deserunt iure doloribus aperiam maiores quis cupiditate laudantium ducimus tenetur ipsa quas similique dolorem, distinctio quos aut odio rem error iste sed labore necessitatibus nemo unde! Ut.</p>
+            <p>{ content}</p>
           </div>
         </div>
 
