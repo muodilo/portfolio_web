@@ -16,6 +16,7 @@ const SinglePost = () => {
       await dispatch(getRelatedPosts(category));
       dispatch(reset());
     }
+    window.scrollTo(0, 0);
     fetchRelatedPosts();
   }, [singlePost, dispatch]);
   return (
