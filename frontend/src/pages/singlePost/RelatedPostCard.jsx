@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpecificPost, reset } from '../../features/post/postSlice';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,9 @@ const RelatedPostCard = ({ post }) => {
       try {
         await dispatch(getSpecificPost(post._id));
         navigate('/blog/' + post._id);
+        window.scrollTo(0, 0);
         dispatch(reset());
+        
       } catch (error) {
         toast.error(isSinglePostErrorMessage)
       }
@@ -29,6 +31,7 @@ const RelatedPostCard = ({ post }) => {
     const truncatedContent = truncatedWords.join(' ');
     return truncatedContent;
   };
+
   return (
     <div className="   flex flex-col items-start cursor-pointer shadow-xl p-2 rounded bg-slate-50 mb-4" onClick={handleClick}>
           

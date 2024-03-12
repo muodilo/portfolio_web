@@ -19,6 +19,8 @@ const SinglePost = () => {
     window.scrollTo(0, 0);
     fetchRelatedPosts();
   }, [singlePost, dispatch]);
+
+
   return (
     <div className='px-0 md:px-[60px] lg:px-[100px]'>
       <div className='pt-[70px] grid lg:grid-cols-4 grid-cols-1'>
