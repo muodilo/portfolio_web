@@ -100,3 +100,8 @@ const generateToken = (id) => {
   )
   return token;
 };
+
+module.exports = {
+  createUser,
+  loginUser
+}
