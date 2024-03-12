@@ -51,31 +51,41 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 
   try {
-    //check if user with provided email exists
+    // Check if user with provided email exists
     const user = await User.findOne({ email });
     if (!user) {
       res.status(401)
-      throw new Error('Invalid email or Password');
+      throw new Error('Invalid email or password');
     }
 
-    //ckeck if the provided password matches the stored hashed password
+    // Check if the provided password matches the stored hashed password
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       res.status(401)
       throw new Error('Invalid password');
     }
+
+    // Check if the user has the admin role
+    if (user.role !== 'admin') {
+      res.status(403)
+      throw new Error('Permission denied. Only admin users are allowed to login.');
+    }
+
+    // If all checks pass, generate and return the token
     res.status(200).json({
       id: user._id,
       username: user.username,
       email: user.email,
       role: user.role,
       token: generateToken(user._id)
-    })
+    });
+
   } catch (error) {
     res.status(500)
     throw new Error(error.message);
   }
-})
+});
+
 
 //generate token function
 const generateToken = (id) => {
