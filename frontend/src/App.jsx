@@ -8,6 +8,7 @@ import BlogPage from "./pages/blogPage/BlogPage"
 import SinglePost from "./pages/singlePost/SinglePost";
 import CreatePost from "./pages/createPost/CreatePost";
 import Register from "./pages/register/Register";
+import Login from "./pages/login/Login";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/blog/:id' element={<SinglePost />} />
         <Route path='/create' element={<CreatePost />} />
         <Route path='/signup' element={<Register/>}/>
+        <Route path='/login' element={<Login/>}/>
         
       </Routes>
       <Footer />
