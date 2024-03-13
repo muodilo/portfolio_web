@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { FloatingLabel } from 'flowbite-react';
 
 const CreatePost = () => {
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate('/');
+    navigate('/signup');
   }),[];
   return (
-    <div>
-      
-    </div>
+    <form className='pt-[90px]'>
+    </form>
   )
 }
 

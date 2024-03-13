@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer"
 import BlogPage from "./pages/blogPage/BlogPage"
 import SinglePost from "./pages/singlePost/SinglePost";
 import CreatePost from "./pages/createPost/CreatePost";
+import Register from "./pages/register/Register";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/blog' element={<BlogPage />} />
         <Route path='/blog/:id' element={<SinglePost />} />
         <Route path='/create' element={<CreatePost />} />
+        <Route path='/signup' element={<Register/>}/>
         
       </Routes>
       <Footer />
