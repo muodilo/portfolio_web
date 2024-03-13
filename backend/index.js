@@ -13,6 +13,7 @@ const port = process.env.PORT || 5000
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use('/uploads', express.static('uploads'));
 
 
 app.use('/api/v1', require('./routes/subscribeRoute.js'));
