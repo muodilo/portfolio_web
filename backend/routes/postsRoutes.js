@@ -1,9 +1,12 @@
 const express = require('express');
-const { createPost,getAllPosts,getCurrentThreePosts,getPostById ,getRelatedPosts} = require('../controllers/postController.js');
+const { createPost, getAllPosts, getCurrentThreePosts, getPostById, getRelatedPosts } = require('../controllers/postController.js');
+
+const  protect  = require('../middleware/authMiddleware.js');
+const  checkAdmin  = require('../middleware/checkAdminMiddleware.js');
 
 const router = express.Router();
 
-router.post('/', createPost);
+router.post('/', protect,checkAdmin,createPost);
 router.get('/', getAllPosts);
 router.get('/currentThreePosts', getCurrentThreePosts);
 router.get('/:id', getPostById);

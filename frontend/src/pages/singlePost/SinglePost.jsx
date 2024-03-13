@@ -38,7 +38,7 @@ const SinglePost = () => {
           </div>
         </div>
 
-        <div className='px-5 pt-12'>
+        <div className='px-5 pt-12 bg-slate-200'>
           <span className="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest mb-5">RELATED POSTS</span>
 
           {relatedPosts.map(post=>(
