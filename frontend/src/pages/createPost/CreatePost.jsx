@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { FloatingLabel } from 'flowbite-react';
 import { toast } from 'react-toastify';
-// import { createPost, reset } from '../../features/post/postSlice';
+import { createPost, reset } from '../../features/post/postSlice';
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useSelector, useDispatch } from 'react-redux';

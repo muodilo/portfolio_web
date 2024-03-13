@@ -21,7 +21,10 @@ const initialState = {
   isRelatedPostLoading: false,
   isRelatedPostError: false,
   isRelatedPostSuccess: false,
-  isRelatedPostErrorMessage:'',
+  isRelatedPostErrorMessage: '',
+  creaingPostDoneMessage:'',
+  creatingPostFailedMessage: '',
+  creatingPostIsLoading:false,
 }
 
 export const getCurrentThreePosts = createAsyncThunk('get/getCurrentThreePosts', async (_, thunkAPI) => {
@@ -66,6 +69,19 @@ export const getRelatedPosts = createAsyncThunk('post/getRelatedPosts', async (c
   }
 })
 
+export const createPost = createAsyncThunk('post/createPost', async (formData, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().reducer.auth.user.token;
+    console.log(token)
+    return await postServices.createPost(formData, token);
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+
+    return thunkAPI.rejectWithValue(message);
+    
+  }
+})
+
 export const postSlice = createSlice({
   name: 'post',
   initialState,
@@ -86,6 +102,10 @@ export const postSlice = createSlice({
       state.isRelatedPostLoading = false;
       state.isRelatedPostError = false;
       state.isRelatedPostErrorMessage = '';
+
+      state.creaingPostDoneMessage = '';
+      state.creatingPostFailedMessage = '';
+      state.creatingPostIsLoading = false;
 
 
     }
@@ -147,6 +167,20 @@ export const postSlice = createSlice({
         state.isRelatedPostLoading = false;
         state.isRelatedPostError = true;
         state.isRelatedPostErrorMessage = action.payload;
+      })
+    
+      .addCase(createPost.pending, (state) => {
+        state.creatingPostIsLoading = true;
+      })
+      .addCase(createPost.fulfilled, (state,action) => {
+        state.creatingPostIsLoading= false;
+        state.isSuccess = true;
+        state.creaingPostDoneMessage= action.payload;
+      })
+      .addCase(createPost.rejected, (state,action) => {
+        state.creatingPostIsLoading = false;
+        state.isSuccess = false;
+        state.creatingPostFailedMessage= action.payload;
       })
     
   }
