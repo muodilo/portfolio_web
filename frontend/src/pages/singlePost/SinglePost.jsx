@@ -33,9 +33,7 @@ const SinglePost = () => {
           <div className='pt-5 shadow-2xl rounded-2xl'>
             <img src={image} alt="image" className='rounded-2xl w-full'/>
           </div>
-          <div className='pt-5'>
-            <p>{ content}</p>
-          </div>
+          <div className='pt-5' dangerouslySetInnerHTML={{ __html: content }} />
         </div>
 
         <div className='px-5 pt-12 bg-slate-200'>

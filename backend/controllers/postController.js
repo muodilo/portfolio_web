@@ -3,27 +3,36 @@ const Post = require('../models/postModel.js');
 
 
 const createPost = asyncHandler(async (req, res) => {
-  const { title, content, image, category } = req.body;
+  const { title, content,category } = req.body;
 
-  if (!title || !content || !image || !category) {
+  if (!title || !content || !category) {
     res.status(401);
     throw new Error('Please provide all fields');
   }
 
   try {
+
+    let imageUrl = null;
+
+    // Check if an image was uploaded
+    if (req.file) {
+      // Construct the image URL based on the server's environment
+      const serverBaseUrl = process.env.SERVER_BASE_URL || 'http://localhost:5000';
+      imageUrl = `${serverBaseUrl}/uploads/${req.file.filename}`;
+    }
+
     //create post in database
     const post = await Post.create({
       title,
       content,
-      image,
+      image:imageUrl,
       category,
     })
 
-    res.status(201).json(post);
+    res.status(201).json('Post is created successfully');
   } catch (error) {
-    res.status(500).json({
-      error: 'Internal Server Error',
-    })
+    res.status(500)
+    throw new Error(error.message)
   }
 });
 
