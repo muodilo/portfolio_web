@@ -36,7 +36,7 @@ const RelatedPostCard = ({ post }) => {
     <div className="   flex flex-col items-start cursor-pointer shadow-xl p-2 rounded bg-slate-50 mb-4" onClick={handleClick}>
           
       <h2 className="sm:text-2xl text-xl title-font font-medium text-gray-900 mt-4 mb-4">{post.title }</h2>
-    <p className="leading-relaxed">{truncateContent(post.content, 10)}</p>
+      <div dangerouslySetInnerHTML={{ __html: truncateContent(post.content, 10) }} />
 
     </div>
             
