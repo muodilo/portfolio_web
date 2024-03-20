@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { FloatingLabel } from 'flowbite-react';
 import { toast } from 'react-toastify';
 import { createPost, reset } from '../../features/post/postSlice';
+import {logout} from '../../features/auth/authSlice'
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useSelector, useDispatch } from 'react-redux';
@@ -66,14 +67,18 @@ const CreatePost = () => {
       formDataWithImage.append('image', formData.image);
 
       
-      dispatch(createPost(formDataWithImage));
-        toast.success('Post created');
-
-
+          // Dispatch createPost action and wait for its completion
+      const action = await dispatch(createPost(formDataWithImage));
+    // Check if the action is fulfilled (successfully dispatched)
+    if (createPost.fulfilled.match(action)) {
+      // If fulfilled, show success toast
+      toast.success('Post created');
       navigate('/blog');
-      
-
-      console.log('Post created');
+    } else {
+      // If not fulfilled, handle error (e.g., show an error message to the user)
+      toast.error('Error creating post:', action.error.message);
+      console.error('Error creating post:', action.error.message);
+    }
       // You can redirect to another page or update the UI as needed after successful post creation.
     } catch (error) {
       toast.error('Error creating post:', error.message);
@@ -82,6 +87,9 @@ const CreatePost = () => {
     }
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+  }
   const modules = {
     toolbar: [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
@@ -156,11 +164,8 @@ const CreatePost = () => {
           </div>
 
           <button type="submit" className="btn btn-primary mb-5">Create Post</button>
-
-
-
         </form>
-
+        <button className='btn btn-default ' onClick={handleLogout}>Logout</button>
 
       </div>
 
