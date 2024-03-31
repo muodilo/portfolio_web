@@ -43,7 +43,7 @@ const Register = () => {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (password !== password2) {
@@ -55,9 +55,16 @@ const Register = () => {
         password,
       }
 
-      dispatch(register(userData))
+      try {
+        await dispatch(register(userData));
+        
+        // After successful registration, navigate to the login page
+        navigate('/login');
+      } catch (error) {
+        toast.error('Registration failed. Please try again.');
+      }
     }
-  }
+  };
 
 
 

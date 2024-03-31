@@ -26,7 +26,7 @@ const Login = () => {
     }
 
     //redirect when logged in
-    if (isSuccess || user) {
+    if (isSuccess && user) {
       navigate('/create');
     }
 
@@ -84,7 +84,7 @@ const Login = () => {
           />
           
           
-          <button type='submit' className='btn btn-primary my-2'>Sign Up</button>
+          <button type='submit' className='btn btn-primary my-2'>Log In</button>
         <p className='mt-3 mb-3'>Don't have an account <Link to='/signup' className='text-blue-600'>Sign Up Here</Link></p>
         </form>
 
