@@ -9,6 +9,7 @@ import SinglePost from "./pages/singlePost/SinglePost";
 import CreatePost from "./pages/createPost/CreatePost";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import Contact from "./pages/contact/Contact";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/create' element={<CreatePost />} />
         <Route path='/signup' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/contact' element={<Contact/>}/>
         
       </Routes>
       <Footer />
