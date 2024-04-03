@@ -66,7 +66,7 @@ const TopNav = () => {
 
         {/* book a call button */}
         <div className="ms-auto md:ms-0">
-          <button className=" btn btn-outline">Hire me</button>
+          <Link to='/contact' className=" btn btn-outline">Hire me</Link>
         </div>
         {/* menu icon */}
         <div className="dropdown dropdown-bottom dropdown-end md:hidden block">

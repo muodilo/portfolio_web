@@ -38,28 +38,26 @@ const Footer = () => {
             <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3 text-3xl ">ODILO</h2>
         <nav className="list-none mb-10 flex md:flex-row flex-col justify-center gap-6">
           <li>
-            <Link className="text-gray-600 hover:text-gray-800">Home</Link>
+            <Link to='/' className="text-gray-600 hover:text-gray-800">Home</Link>
           </li>
           <li>
-            <Link className="text-gray-600 hover:text-gray-800">About</Link>
+            <Link to='/about' className="text-gray-600 hover:text-gray-800">About</Link>
           </li>
           <li>
-            <Link className="text-gray-600 hover:text-gray-800">Pojects</Link>
+            <Link to='/projects' className="text-gray-600 hover:text-gray-800">Pojects</Link>
           </li>
           <li>
-            <Link className="text-gray-600 hover:text-gray-800">Contact</Link>
+            <Link to='/contact' className="text-gray-600 hover:text-gray-800">Contact</Link>
           </li>
+  
           <li>
-            <Link className="text-gray-600 hover:text-gray-800">Contact</Link>
-          </li>
-          <li>
-            <Link className="text-gray-600 hover:text-gray-800">Blog</Link>
+            <Link to='/blog' className="text-gray-600 hover:text-gray-800">Blog</Link>
           </li>
         </nav>
       </div>
         <div className="flex flex-col items-center">
             <h1 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3 text-center">LETS MAKE SOMETHING GREAT TOGETHER</h1>
-            <button className="btn btn-neutral animate-bounce ease-linear">Let's Talk <MdArrowOutward /></button>
+            <Link to='/contact' className="btn btn-neutral animate-bounce ease-linear">Let's Talk <MdArrowOutward /></Link>
         </div>
 
       <div className="px-4 flex flex-col items-start">
@@ -96,7 +94,7 @@ const Footer = () => {
       </p>
       <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
         <a className="text-gray-500">
-          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
+          <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
             <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
           </svg>
         </a>
@@ -106,13 +104,13 @@ const Footer = () => {
           </svg>
         </a>
         <a className="ml-3 text-gray-500">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
+          <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
             <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
             <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
           </svg>
         </a>
         <a className="ml-3 text-gray-500">
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" className="w-5 h-5" viewBox="0 0 24 24">
+          <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0" className="w-5 h-5" viewBox="0 0 24 24">
             <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
             <circle cx="4" cy="4" r="2" stroke="none"></circle>
           </svg>
