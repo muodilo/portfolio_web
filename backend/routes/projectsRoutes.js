@@ -20,6 +20,6 @@ const upload = multer({ storage: storage });
 
 router.post('/', protect,checkAdmin,upload.single('image'),createProject);
 router.get('/', getAllProjects);
-router.get('/currentThreePosts', getCurrentThreeProjects);
+router.get('/currentThreeProjects', getCurrentThreeProjects);
 
 module.exports = router;
