@@ -36,23 +36,23 @@ const createProject = asyncHandler(async (req, res) => {
   }
 });
 
-// const getAllPosts = asyncHandler(async (req, res) => {
-//   try {
-//     const posts = await Post.find().sort({ createdAt: -1 });
-//     if (!posts) {
-//       res.status(400);
-//       throw new Error('There is no post yet available');
-//     } else {
-//       res.status(200).json(posts);
-//     }
+const getAllProjects = asyncHandler(async (req, res) => {
+  try {
+    const projects = await Project.find().sort({ createdAt: -1 });
+    if (!posts) {
+      res.status(400);
+      throw new Error('There is no project yet available');
+    } else {
+      res.status(200).json(projects);
+    }
 
-//   } catch (error) {
-//     console.log(error)
-//     res.status(500).json({
-//       error: 'Internal server error',
-//     })
-//   }
-// });
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      error: 'Internal server error',
+    })
+  }
+});
 
 // const getCurrentThreePosts = asyncHandler(async (req, res) => {
 //   try {
@@ -105,5 +105,6 @@ const createProject = asyncHandler(async (req, res) => {
 
 module.exports = {
   createProject,
+  getAllProjects,
 }
 
