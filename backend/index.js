@@ -19,6 +19,8 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api/v1', require('./routes/subscribeRoute.js'));
 app.use('/api/v1/users', require('./routes/userRoute.js'));
 app.use('/api/v1/posts', require('./routes/postsRoutes.js'));
+app.use('/api/v1/projects', require('./routes/projectsRoutes.js'));
+
 
 
 app.use(errorHandler);
