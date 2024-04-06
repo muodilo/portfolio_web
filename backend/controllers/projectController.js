@@ -54,23 +54,23 @@ const getAllProjects = asyncHandler(async (req, res) => {
   }
 });
 
-// const getCurrentThreePosts = asyncHandler(async (req, res) => {
-//   try {
-//     // Query the database to retrieve the three most recent posts
-//     const posts = await Post.find().sort({ createdAt: -1 }).limit(3);
+const getCurrentThreeProjects = asyncHandler(async (req, res) => {
+  try {
+    // Query the database to retrieve the three most recent posts
+    const projects = await Project.find().sort({ createdAt: -1 }).limit(3);
 
-//     if (!posts || posts.length === 0) {
-//       res.status(404).json({ error: 'There are no posts available' });
-//     } else {
-//       res.status(200).json(posts);
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({
-//       error: 'Internal server error',
-//     });
-//   }
-// });
+    if (!projects || projects.length === 0) {
+      res.status(404).json({ error: 'There are no projects available' });
+    } else {
+      res.status(200).json(projects);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: 'Internal server error',
+    });
+  }
+});
 
 // const getPostById = asyncHandler(async (req, res) => {
 //   const postId = req.params.id;
@@ -106,5 +106,6 @@ const getAllProjects = asyncHandler(async (req, res) => {
 module.exports = {
   createProject,
   getAllProjects,
+  getCurrentThreeProjects
 }
 
