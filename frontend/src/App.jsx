@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer"
 import BlogPage from "./pages/blogPage/BlogPage"
 import SinglePost from "./pages/singlePost/SinglePost";
 import CreatePost from "./pages/createPost/CreatePost";
+import CreateProject from "./pages/createProject/CreateProject";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Contact from "./pages/contact/Contact";
@@ -21,7 +22,8 @@ function App() {
         <Route path='/' element={<Layout/> } />
         <Route path='/blog' element={<BlogPage />} />
         <Route path='/blog/:id' element={<SinglePost />} />
-        <Route path='/create' element={<CreatePost />} />
+        <Route path='/create-post' element={<CreatePost />} />
+        <Route path='/create-project' element={<CreateProject />} />
         <Route path='/signup' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/contact' element={<Contact/>}/>

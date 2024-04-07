@@ -1,8 +1,29 @@
 import './latestWork.css';
 import { Link } from 'react-router-dom';
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getCurrentThreeProjects,reset } from '../../features/projects/projectSlice';
+
 
 const LatestWork = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await dispatch(getCurrentThreeProjects());
+        dispatch(reset())
+      } catch (error) {
+        console.error(error);
+        dispatch(reset())
+
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
+
   return (
     <section className="px-0 md:px-[60px] lg:px-[100px] pb-[60px] bg-slate-200 " id="work__section">
       <h1 className="text-center text-slate-600 font-bold text-[20px] pt-[40px]">My Recent Work</h1>

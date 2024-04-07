@@ -5,11 +5,11 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required:true,
   },
-  ulr: {
+  url: {
     type: String,
     required:true,
   },
-  githubUlr: {
+  githubUrl: {
     type: String,
     required:true,
   },

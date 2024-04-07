@@ -13,7 +13,8 @@ const persistConfig = {
 }
 const rootReducer = combineReducers({
   auth: authReducer,
-  posts:postReducer,
+  posts: postReducer,
+  project:projectReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

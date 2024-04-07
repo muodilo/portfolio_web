@@ -3,9 +3,9 @@ const Project = require('../models/projectModel.js');
 
 
 const createProject = asyncHandler(async (req, res) => {
-  const { title, image,url,githubUrl } = req.body;
+  const { title,url,githubUrl } = req.body;
 
-  if (!title || !image || !url || !githubUrl) {
+  if (!title || !url || !githubUrl) {
     res.status(401);
     throw new Error('Please provide all fields');
   }
@@ -25,11 +25,11 @@ const createProject = asyncHandler(async (req, res) => {
     const project = await Project.create({
       title,
       url,
-      githubUlr,
+      githubUrl,
       image:imageUrl,
     })
 
-    res.status(201).json('Post is created successfully');
+    res.status(201).json('Project is created successfully');
   } catch (error) {
     res.status(500)
     throw new Error(error.message)

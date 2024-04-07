@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const GET_CURRENT_THREE_PROJECTS = 'http://localhost:5000/api/v1/posts/currentThreeProjects';
+const GET_CURRENT_THREE_PROJECTS = 'http://localhost:5000/api/v1/projects/currentThreeProjects';
 const GET_ALL_PROJECTS = 'http://localhost:5000/api/v1/projects';
-const CREATE_PROJECT_API_URL = 'http://localhost:5000/api/v1/projects'
+const CREATE_PROJECT_API_URL = 'http://localhost:5000/api/v1/projects';
 
 
 const getCurrentThreeProjects = async () => {
@@ -15,7 +15,7 @@ const getAllProjects = async () => {
   return response.data;
 }
 
-const createPost = async (formData, token) => {
+const createProject = async (formData, token) => {
 
   const config = {
     headers: {
@@ -30,7 +30,7 @@ const createPost = async (formData, token) => {
 const projectServices = {
   getCurrentThreeProjects,
   getAllProjects,
-  createPost
+  createProject,
 }
 
 export default projectServices;

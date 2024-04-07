@@ -3,7 +3,8 @@ const multer = require('multer');
 
 const { createProject, getAllProjects, getCurrentThreeProjects } = require('../controllers/projectController.js');
 
-const  protect  = require('../middleware/authMiddleware.js');
+const protect = require('../middleware/authMiddleware.js');
+
 const  checkAdmin  = require('../middleware/checkAdminMiddleware.js');
 
 const router = express.Router();

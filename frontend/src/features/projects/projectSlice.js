@@ -14,7 +14,7 @@ const initialState = {
   isAllProjectsErrorMessage:'',
 }
 
-export const getCurrentThreeProjects = createAsyncThunk('get/getCurrentThreeProjects', async (_, thunkAPI) => {
+export const getCurrentThreeProjects = createAsyncThunk('project/getCurrentThreeProjects', async (_, thunkAPI) => {
   try {
     return await projectServices.getCurrentThreeProjects();
   } catch (error) {
@@ -24,7 +24,7 @@ export const getCurrentThreeProjects = createAsyncThunk('get/getCurrentThreeProj
   }
 })
 
-export const getAllProjects = createAsyncThunk('get/getAllProjects', async (_, thunkAPI) => {
+export const getAllProjects = createAsyncThunk('project/getAllProjects', async (_, thunkAPI) => {
   try {
     return await projectServices.getAllProjects();
   } catch (error) {
@@ -35,11 +35,11 @@ export const getAllProjects = createAsyncThunk('get/getAllProjects', async (_, t
 })
 
 
-export const createProject = createAsyncThunk('post/createPost', async (formData, thunkAPI) => {
+export const createProject = createAsyncThunk('project/createProject', async (formData, thunkAPI) => {
   try {
     const token = thunkAPI.getState().reducer.auth.user.token;
     console.log(token)
-    return await projectServices.createProject(formData, token);
+    return await projectServices.createProject(formData,token);
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
 
