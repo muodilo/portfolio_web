@@ -1,5 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const Post = require('../models/postModel.js');
+const Subscription = require('../models/Subscription.js');
+const { createTransport } = require('nodemailer');
 
 
 const createPost = asyncHandler(async (req, res) => {
@@ -28,6 +30,16 @@ const createPost = asyncHandler(async (req, res) => {
       image:imageUrl,
       category,
     })
+
+    //Fetch all subscribers
+    const subscribers = await Subscription.find({});
+
+    //Send post link to each subscriber
+    subscribers.forEach(async (subscriber) => {
+      const subscriberEmail = subscriber.email;
+
+      await sendPostLinkToSubscriber(subscriberEmail, post._id);
+    });
 
     res.status(201).json('Post is created successfully');
   } catch (error) {
@@ -102,6 +114,37 @@ const getRelatedPosts = asyncHandler(async (req, res) => {
     throw new Error('Internal Server Error')
   }
 })
+
+// Create a transporter using SMTP transport
+
+const SMTP_KEY = process.env.SMTP_KEY;
+
+const transporter = createTransport({
+  host: "smtp-relay.sendinblue.com",
+  port: 587,
+  auth: {
+      user: "odilomurindahabi@gmail.com",
+      pass: SMTP_KEY,
+  },
+});
+
+// Function to send post link to a subscriber via email
+async function sendPostLinkToSubscriber(email, postId) {
+  try {
+    // Send email
+    const info = await transporter.sendMail({
+      from: 'odilomurindahabi@gmail.com',
+      to: email,
+      subject: 'New Post Published',
+      text: `A new post has been published! Check it out: http://http://localhost:5173/blog/${postId}`,
+    });
+
+    console.log('Email sent: ', info.response);
+  } catch (error) {
+    console.error('Error sending email: ', error);
+  }
+}
+
 
 module.exports = {
   createPost,
