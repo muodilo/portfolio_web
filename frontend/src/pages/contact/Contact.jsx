@@ -47,7 +47,7 @@ const Contact = () => {
           <div className='mt-6 ps-5 grid grid-cols-1 lg:grid-cols-2 pb-5 '>
             <div className='flex items-center shadow p-2 m-1 bg-slate-300/40 rounded'>
               <div>
-              <MdOutlineMail className='me-3 text-2xl' />
+              <MdOutlineMail className='me-3 text-2xl text-lime-800' />
               </div>
               <div>
                 <h2 className="title-font font-semibold text-gray-900 tracking-widest text-xs">EMAIL</h2>
@@ -57,7 +57,7 @@ const Contact = () => {
 
             <div className='flex items-center shadow p-2 m-1  bg-slate-300/40 rounded'>
               <div>
-                <IoCallOutline className='me-3 text-2xl'/>
+                <IoCallOutline className='me-3 text-2xl text-lime-800'/>
               </div>
               <div>
                 <h2 className="title-font font-semibold text-gray-900 tracking-widest text-xs mt-4">PHONE</h2>
@@ -67,7 +67,7 @@ const Contact = () => {
 
             <div className='flex items-center shadow p-2 m-1  bg-slate-300/40 rounded'>
               <div >
-              <FaWhatsapp className='me-3 text-2xl'/>
+              <FaWhatsapp className='me-3 text-2xl text-green-400'/>
               </div>
               <div>
                 <h2 className="title-font font-semibold text-gray-900 tracking-widest text-xs mt-4">WHATSAPP</h2>
