@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllPosts } from "../../features/post/postSlice";
+import { getAllPosts,reset } from "../../features/post/postSlice";
 import { Table } from "flowbite-react";
 
 const ListOfBlogs = () => {
@@ -12,6 +12,7 @@ const ListOfBlogs = () => {
     const fetchData = async () => {
       try {
         await dispatch(getAllPosts());
+        dispatch(reset());
       } catch (error) {
         console.error(error);
       }
