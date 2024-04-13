@@ -27,7 +27,7 @@ const Login = () => {
 
     //redirect when logged in
     if (isSuccess && user) {
-      navigate('/create');
+      navigate(`/profile/${user.username}`);
     }
 
     dispatch(resetUser());
@@ -74,7 +74,7 @@ const Login = () => {
           
           <FloatingLabel
             variant="outlined"
-            label="Create Password"
+            label="Enter Your Password"
             name='password'
             type='password'
             required

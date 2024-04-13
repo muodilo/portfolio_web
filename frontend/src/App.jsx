@@ -11,6 +11,7 @@ import CreateProject from "./pages/createProject/CreateProject";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Contact from "./pages/contact/Contact";
+import Profile from "./pages/profile/Profile";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route path='/signup' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='/profile/:name' element={<Profile/>}/>
         
       </Routes>
       <Footer />
