@@ -1,8 +1,21 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Link } from "react-router-dom";
-import ListOfBlogs from '../../components/ListOfBlogs/ListOfBlogs'
+import ListOfBlogs from '../../components/ListOfBlogs/ListOfBlogs';
+import { useNavigate } from 'react-router-dom';
+import { useSelector} from 'react-redux';
 
 const Profile = () => {
+  const navigate = useNavigate();
+  const { user } = useSelector(state => state.reducer.auth);
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    } else if (user.role !== 'admin') {
+      navigate('/login');
+    }
+  }, [user])
+
   return (
     <section className=' px-0 md:px-[60px] lg:px-[100px] '>
       <div className='pt-[70px] grid md:grid-cols-2 grid-cols-1'>

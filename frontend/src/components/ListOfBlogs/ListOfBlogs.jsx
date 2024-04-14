@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPosts,reset } from "../../features/post/postSlice";
 import { Table } from "flowbite-react";
+import { Spinner } from "flowbite-react";
 
 const ListOfBlogs = () => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const ListOfBlogs = () => {
         <Table.Body className="divide-y">
           {isAllPostsLoading ? (
             <tr>
-              <td colSpan="4">Loading...</td>
+              <td colSpan="4">Loading... <Spinner aria-label="Default status example" /></td>
             </tr>
           ) : (
             allPosts.map((post) => (
