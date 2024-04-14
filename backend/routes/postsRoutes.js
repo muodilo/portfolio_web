@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 
-const { createPost, getAllPosts, getCurrentThreePosts, getPostById, getRelatedPosts } = require('../controllers/postController.js');
+const { createPost, getAllPosts, getCurrentThreePosts, getPostById, getRelatedPosts,deletePostById } = require('../controllers/postController.js');
 
 const  protect  = require('../middleware/authMiddleware.js');
 const  checkAdmin  = require('../middleware/checkAdminMiddleware.js');
@@ -22,6 +22,7 @@ router.post('/', protect,checkAdmin,upload.single('image'),createPost);
 router.get('/', getAllPosts);
 router.get('/currentThreePosts', getCurrentThreePosts);
 router.get('/:id', getPostById);
+router.delete('/:id',protect,checkAdmin,deletePostById);
 router.get('/related/:category', getRelatedPosts);
 
 module.exports = router;

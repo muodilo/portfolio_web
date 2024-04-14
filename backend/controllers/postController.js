@@ -164,5 +164,6 @@ module.exports = {
   getCurrentThreePosts,
   getPostById,
   getRelatedPosts,
+  deletePostById,
 }
 
