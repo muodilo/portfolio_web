@@ -95,6 +95,18 @@ const getPostById = asyncHandler(async (req, res) => {
   res.status(200).json(post);
 })
 
+const deletePostById = asyncHandler(async (req, res) => {
+  const postId = req.params.id;
+  const post = await Post.findById(postId);
+  if (!post) {
+    res.status(404);
+    throw new Error('Post not found');
+  }
+
+  await post.remove();
+  res.status(200).json({ message: 'Post deleted successfully' });
+});
+
 
 const getRelatedPosts = asyncHandler(async (req, res) => {
   const category = req.params.category;
