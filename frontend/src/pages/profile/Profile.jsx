@@ -23,7 +23,7 @@ const Profile = () => {
         <div className='bg-blue-200/50 px-5 max-h-svh overflow-auto pb-5'>
           <div className='flex items-center justify-between pt-3  pb-2'>
             <h1 className='text-3xl '>Blogs</h1>
-            <Link to='/create-post' className='btn'>Create New</Link>
+            <Link to='/create-post' className='btn btn-active btn-accent'>Create New</Link>
           </div>
           <hr className='mb-2' />
           <ListOfBlogs/>
@@ -31,7 +31,7 @@ const Profile = () => {
         <div className='bg-blue-100/50 px-5 max-h-svh overflow-auto pb-5'>
         <div className='flex items-center justify-between pt-3  pb-2'>
             <h1 className='text-3xl '>Projects</h1>
-            <Link to='/create-project' className='btn'>Create New</Link>
+            <Link to='/create-project' className='btn btn-active btn-accent'>Create New</Link>
           </div>
           <hr className='mb-2' />
           <ListOfProjects/>

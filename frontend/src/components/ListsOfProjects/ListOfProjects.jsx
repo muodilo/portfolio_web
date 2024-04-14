@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllProjects,reset } from "../../features/projects/projectSlice";
 import { Table } from "flowbite-react";
@@ -47,14 +48,14 @@ const ListOfProjects = () => {
                   {project.title}
                 </Table.Cell>
                 <Table.Cell>
-                  <a href="#" className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
+                  <button className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
                     Edit
-                  </a>
+                  </button>
                 </Table.Cell>
                 <Table.Cell>
-                  <a href="#" className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
+                  <button className="font-medium text-red-700 hover:underline dark:text-cyan-500">
                     Delete
-                  </a>
+                  </button>
                 </Table.Cell>
               </Table.Row>
             ))
