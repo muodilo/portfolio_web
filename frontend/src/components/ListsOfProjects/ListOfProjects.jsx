@@ -7,7 +7,7 @@ import { Spinner } from "flowbite-react";
 const ListOfProjects = () => {
   const dispatch = useDispatch();
 
-  const { allProjects, isAllProjectsLoading, isAllProjectsSuccess } = useSelector(state => state.reducer.projects);
+  const { allProjects, isAllProjectsLoading, isAllProjectsSuccess } = useSelector(state => state.reducer.project);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +42,7 @@ const ListOfProjects = () => {
             </tr>
           ) : (
             allProjects.map((project) => (
-              <Table.Row key={project.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+              <Table.Row key={project._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                   {project.title}
                 </Table.Cell>

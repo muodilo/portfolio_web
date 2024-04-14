@@ -43,7 +43,7 @@ const ListOfBlogs = () => {
             </tr>
           ) : (
             allPosts.map((post) => (
-              <Table.Row key={post.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+              <Table.Row key={post._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                   {post.title}
                 </Table.Cell>

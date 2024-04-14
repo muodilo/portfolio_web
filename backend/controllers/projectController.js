@@ -39,7 +39,7 @@ const createProject = asyncHandler(async (req, res) => {
 const getAllProjects = asyncHandler(async (req, res) => {
   try {
     const projects = await Project.find().sort({ createdAt: -1 });
-    if (!posts) {
+    if (!projects) {
       res.status(400);
       throw new Error('There is no project yet available');
     } else {

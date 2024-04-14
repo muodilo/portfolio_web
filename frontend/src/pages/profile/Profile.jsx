@@ -1,6 +1,7 @@
 import React,{useEffect} from 'react'
 import { Link } from "react-router-dom";
 import ListOfBlogs from '../../components/ListOfBlogs/ListOfBlogs';
+import ListOfProjects from '../../components/ListsOfProjects/ListOfProjects';
 import { useNavigate } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 
@@ -28,7 +29,12 @@ const Profile = () => {
           <ListOfBlogs/>
         </div>
         <div className='bg-blue-100/50 px-5 max-h-svh overflow-auto pb-5'>
-          <h1 className='text-3xl mb-5 mt-2'>projects</h1>
+        <div className='flex items-center justify-between pt-3  pb-2'>
+            <h1 className='text-3xl '>Projects</h1>
+            <Link to='/create-project' className='btn'>Create New</Link>
+          </div>
+          <hr className='mb-2' />
+          <ListOfProjects/>
         </div>
       </div>
     </section>
