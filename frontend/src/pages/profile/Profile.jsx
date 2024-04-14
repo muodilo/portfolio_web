@@ -23,7 +23,6 @@ const Profile = () => {
           <div className='flex items-center justify-between pt-3  pb-2'>
             <h1 className='text-3xl '>Blogs</h1>
             <Link to='/create-post' className='btn'>Create New</Link>
-
           </div>
           <hr className='mb-2' />
           <ListOfBlogs/>
