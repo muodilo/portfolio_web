@@ -1,27 +1,25 @@
 import React from 'react'
 import { Table } from "flowbite-react";
 import { toast } from 'react-toastify';
-import axios from 'axios';
-import { useSelector} from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import { deletePost, reset } from '../../features/post/postSlice';
 
 const ListOfBlogRow = ({ post }) => {
 
   const { user } = useSelector(state => state.reducer.auth);
+  const dispatch = useDispatch()
   
-  const deletePost = async (postId) => {
+  const handleDeletePost = async (postId) => {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}` // Include user token in the request headers
-        }
-      };
-      await axios.delete(`http://localhost:5000/api/v1/posts/${postId}`, config);
-      toast.success('Post deleted successfully'); // Display success toast
+      await dispatch(deletePost(postId)); // Dispatch the deletePost action with postId and token
+      toast.success('Post deleted successfully');
+      dispatch(reset());
     } catch (error) {
       console.error(error);
-      toast.error('Failed to delete post'); // Display error toast
+      toast.error('Failed to delete post');
+      dispatch(reset());
     }
-  }
+  };
   return (
     <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
       <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
@@ -34,7 +32,7 @@ const ListOfBlogRow = ({ post }) => {
         </button>
       </Table.Cell>
       <Table.Cell>
-        <button onClick={() => deletePost(post._id)} className="font-medium text-red-700 hover:underline dark:text-cyan-500">
+        <button onClick={() => handleDeletePost(post._id)} className="font-medium text-red-700 hover:underline dark:text-cyan-500">
           Delete
         </button>
       </Table.Cell>

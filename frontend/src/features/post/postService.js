@@ -4,6 +4,7 @@ const GET_CURRENT_THREE_POSTS = 'http://localhost:5000/api/v1/posts/currentThree
 const GET_ALL_POSTS = 'http://localhost:5000/api/v1/posts';
 const GET_RELATED_POSTS = 'http://localhost:5000/api/v1/posts/related';
 const CREATE_POST_API_URL = 'http://localhost:5000/api/v1/posts'
+const DELETE_POST_API_URL = 'http://localhost:5000/api/v1/posts'
 
 
 const getCurrentThreePosts = async () => {
@@ -45,7 +46,7 @@ const deletePost = async (postId, token) => {
         Authorization: `Bearer ${token}`,
       }
     };
-    await axios.delete(`CREATE_POST_API_URL/${postId}`, config);
+    await axios.delete(`${DELETE_POST_API_URL}/${postId}`, config);
     return true; // Indicates successful deletion
   } catch (error) {
     console.error(error);
