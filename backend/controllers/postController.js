@@ -103,7 +103,7 @@ const deletePostById = asyncHandler(async (req, res) => {
     throw new Error('Post not found');
   }
 
-  await post.remove();
+  await post.deleteOne();
   res.status(200).json({ message: 'Post deleted successfully' });
 });
 

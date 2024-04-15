@@ -38,12 +38,29 @@ const createPost = async (formData, token) => {
   return response.data;
 }
 
+const deletePost = async (postId, token) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    };
+    await axios.delete(`CREATE_POST_API_URL/${postId}`, config);
+    return true; // Indicates successful deletion
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to delete post');
+  }
+};
+
+
 const postServices = {
   getCurrentThreePosts,
   getAllPosts,
   getSpecificPost,
   getRelatedPosts,
-  createPost
+  createPost,
+  deletePost, 
 }
 
 export default postServices;

@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllPosts,reset } from "../../features/post/postSlice";
 import { Table } from "flowbite-react";
 import { Spinner } from "flowbite-react";
+import { toast } from 'react-toastify';
+import ListOfBlogRow from './ListOfBlogRow';
 
 const ListOfBlogs = () => {
   const dispatch = useDispatch();
@@ -22,6 +24,7 @@ const ListOfBlogs = () => {
 
     fetchData();
   }, [dispatch]);
+
 
   return (
     <div className="overflow-x-auto">
@@ -44,22 +47,7 @@ const ListOfBlogs = () => {
             </tr>
           ) : (
             allPosts.map((post) => (
-              <Table.Row key={post._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                  {post.title}
-                </Table.Cell>
-                <Table.Cell>{post.category}</Table.Cell>
-                <Table.Cell>
-                  <button className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
-                    Edit
-                  </button>
-                </Table.Cell>
-                <Table.Cell>
-                  <button className="font-medium text-red-700 hover:underline dark:text-cyan-500">
-                    Delete
-                  </button>
-                </Table.Cell>
-              </Table.Row>
+              <ListOfBlogRow key={post._id } post={post} />
             ))
           )}
         </Table.Body>
