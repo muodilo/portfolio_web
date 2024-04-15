@@ -48,6 +48,52 @@ const createPost = asyncHandler(async (req, res) => {
   }
 });
 
+
+const updatePost = asyncHandler(async (req, res) => {
+  const postId = req.params.id; // Get the post ID from the request parameters
+  const updateFields = req.body;
+
+  try {
+    // Fetch the existing post from the database
+    let post = await Post.findById(postId);
+    if (!post) {
+      res.status(404).json({ message: 'Post not found' });
+      return;
+    }
+
+    // Update only the fields provided in the request body
+    Object.keys(updateFields).forEach((key) => {
+      if (updateFields[key]) {
+        post[key] = updateFields[key];
+      }
+    });
+
+    // Check if an image was uploaded and update the image URL if provided
+    if (req.file) {
+      const serverBaseUrl = process.env.SERVER_BASE_URL || 'http://localhost:5000';
+      post.image = `${serverBaseUrl}/uploads/${req.file.filename}`;
+    }
+
+    // Save the updated post
+    post = await post.save();
+
+    // Fetch all subscribers
+    const subscribers = await Subscription.find({});
+
+    // Send post update notification to each subscriber
+    subscribers.forEach(async (subscriber) => {
+      const subscriberEmail = subscriber.email;
+
+      await sendPostUpdateNotification(subscriberEmail, postId); // Implement sendPostUpdateNotification function
+    });
+
+    res.status(200).json({ message: 'Post updated successfully', post });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 const getAllPosts = asyncHandler(async (req, res) => {
   try {
     const posts = await Post.find().sort({ createdAt: -1 });

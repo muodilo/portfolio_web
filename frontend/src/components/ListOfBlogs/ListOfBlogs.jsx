@@ -6,9 +6,11 @@ import { Table } from "flowbite-react";
 import { Spinner } from "flowbite-react";
 import { toast } from 'react-toastify';
 import ListOfBlogRow from './ListOfBlogRow';
+import { useNavigate } from 'react-router-dom';
 
 const ListOfBlogs = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { allPosts, isAllPostsLoading, isAllPostsSuccess } = useSelector(state => state.reducer.posts);
 
@@ -41,6 +43,10 @@ const ListOfBlogs = () => {
     }
   };
 
+  const handleEdit = (postId) => {
+    navigate(`/posts/update/${postId}`);
+  }
+
 
   return (
     <div className="overflow-x-auto">
@@ -69,7 +75,7 @@ const ListOfBlogs = () => {
               </Table.Cell>
               <Table.Cell>{post.category}</Table.Cell>
               <Table.Cell>
-              <button className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
+              <button onClick={()=>handleEdit(post._id)} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
               Edit
               </button>
               </Table.Cell>
