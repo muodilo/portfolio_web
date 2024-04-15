@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllPosts,deletePost,reset } from "../../features/post/postSlice";
+import { getAllPosts,getSpecificPost,deletePost,reset } from "../../features/post/postSlice";
 import { Table } from "flowbite-react";
 import { Spinner } from "flowbite-react";
 import { toast } from 'react-toastify';
@@ -44,8 +44,19 @@ const ListOfBlogs = () => {
   };
 
   const handleEdit = (postId) => {
-    navigate(`/posts/update/${postId}`);
+    const fetchSinglePost = async () => {
+      try {
+        await dispatch(getSpecificPost(postId));
+        navigate(`/posts/update/${postId}`);
+        dispatch(reset());
+      } catch (error) {
+        toast.error(error.message);
+      }
+    }
+    fetchSinglePost();
+    dispatch(reset());
   }
+
 
 
   return (
