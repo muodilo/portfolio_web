@@ -24,7 +24,10 @@ const initialState = {
   isRelatedPostErrorMessage: '',
   creaingPostDoneMessage:'',
   creatingPostFailedMessage: '',
-  creatingPostIsLoading:false,
+  creatingPostIsLoading: false,
+  deletePostIsLoading:false,
+  deletePostSuccess: false,
+  deletePostFailsMessage:'',
 }
 
 export const getCurrentThreePosts = createAsyncThunk('get/getCurrentThreePosts', async (_, thunkAPI) => {
@@ -82,6 +85,20 @@ export const createPost = createAsyncThunk('post/createPost', async (formData, t
   }
 })
 
+export const deletePost = createAsyncThunk(
+  'post/deletePost',
+  async (postId, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().reducer.auth.user.token;
+      await postServices.deletePost(postId, token); // Call the deletePost service
+      return postId; // Return the deleted postId
+    } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const postSlice = createSlice({
   name: 'post',
   initialState,
@@ -106,6 +123,10 @@ export const postSlice = createSlice({
       state.creaingPostDoneMessage = '';
       state.creatingPostFailedMessage = '';
       state.creatingPostIsLoading = false;
+
+      state.deletePostIsLoading = false;
+      state.deletePostSuccess= false;
+      state.deletePostFailsMessage='';
 
 
     }
@@ -181,6 +202,20 @@ export const postSlice = createSlice({
         state.creatingPostIsLoading = false;
         state.isSuccess = false;
         state.creatingPostFailedMessage= action.payload;
+      })
+
+
+      .addCase(deletePost.pending, (state) => {
+        state.deletePostIsLoading = true;
+      })
+      .addCase(deletePost.fulfilled, (state) => {
+        state.deletePostIsLoading= false;
+        state.deletePostSuccess = true;
+      })
+      .addCase(deletePost.rejected, (state,action) => {
+        state.deletePostIsLoading = false;
+        state.deletePostSuccess = false;
+        state.deletePostFailsMessage= action.payload;
       })
     
   }
