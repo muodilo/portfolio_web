@@ -54,6 +54,26 @@ const deletePost = async (postId, token) => {
   }
 };
 
+const updatePost = async (postId, postData, token) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    // Make a PUT request to update the post
+    const response = await axios.put(`${DELETE_POST_API_URL}/${postId}`, postData, config);
+
+    return response.data; // Return the updated post data
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to update post');
+  }
+};
+
+
 
 const postServices = {
   getCurrentThreePosts,
@@ -62,6 +82,7 @@ const postServices = {
   getRelatedPosts,
   createPost,
   deletePost, 
+  updatePost,
 }
 
 export default postServices;

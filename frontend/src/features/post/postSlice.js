@@ -28,6 +28,9 @@ const initialState = {
   deletePostIsLoading:false,
   deletePostSuccess: false,
   deletePostFailsMessage:'',
+  updatePostIsLoading:false,
+  updatePostSuccess: false,
+  updatePostFailsMessage:'',
 }
 
 export const getCurrentThreePosts = createAsyncThunk('get/getCurrentThreePosts', async (_, thunkAPI) => {
@@ -99,6 +102,21 @@ export const deletePost = createAsyncThunk(
   }
 );
 
+
+export const updatePost = createAsyncThunk(
+  'post/updatePost',
+  async ({ postId, postData }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().reducer.auth.user.token;
+      const updatedPostData = await postServices.updatePost(postId, postData, token); // Call the updatePost service
+      return updatedPostData; // Return the updated post data
+    } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const postSlice = createSlice({
   name: 'post',
   initialState,
@@ -127,6 +145,10 @@ export const postSlice = createSlice({
       state.deletePostIsLoading = false;
       state.deletePostSuccess= false;
       state.deletePostFailsMessage='';
+
+      state.updatePostIsLoading = false;
+      state.updatePostSuccess= false;
+      state.updatePostFailsMessage='';
 
 
     }
@@ -216,6 +238,20 @@ export const postSlice = createSlice({
         state.deletePostIsLoading = false;
         state.deletePostSuccess = false;
         state.deletePostFailsMessage= action.payload;
+      })
+
+
+      .addCase(updatePost.pending, (state) => {
+        state.updatePostIsLoading = true;
+      })
+      .addCase(updatePost.fulfilled, (state) => {
+        state.updatePostIsLoading= false;
+        state.updatePostSuccess = true;
+      })
+      .addCase(updatePost.rejected, (state,action) => {
+        state.updatePostIsLoading = false;
+        state.updatePostSuccess = false;
+        state.updatePostFailsMessage= action.payload;
       })
     
   }
