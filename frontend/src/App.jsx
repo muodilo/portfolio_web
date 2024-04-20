@@ -13,6 +13,7 @@ import Login from "./pages/login/Login";
 import Contact from "./pages/contact/Contact";
 import Profile from "./pages/profile/Profile";
 import UpdatePost from "./pages/updatePost/UpdatePost";
+import UpdateProject from "./pages/updateProject/UpdateProject";
 import SingleProject from "./pages/singleProject/SingleProject";
 import ProjectPage from "./pages/projectPage/ProjectPage";
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/profile/:name' element={<Profile/>}/>
         <Route path='/posts/update/:id' element={<UpdatePost/>}/>
+        <Route path='/projects/update/:id' element={<UpdateProject/>}/>
         <Route path='/project/:id' element={<SingleProject/>}/>
         
       </Routes>

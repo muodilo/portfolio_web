@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {deleteProject, getAllProjects,reset } from "../../features/projects/projectSlice";
+import {deleteProject, getAllProjects,reset,getProjectById } from "../../features/projects/projectSlice";
 import { Table } from "flowbite-react";
 import { Spinner } from "flowbite-react";
 import { toast } from 'react-toastify';
 
 const ListOfProjects = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { allProjects, isAllProjectsLoading, isAllProjectsSuccess } = useSelector(state => state.reducer.project);
 
@@ -40,6 +42,20 @@ const ListOfProjects = () => {
     }
   };
 
+  const handleEdit = (postId) => {
+    const fetchSinglePost = async () => {
+      try {
+        await dispatch(getProjectById(postId));
+        navigate(`/projects/update/${postId}`);
+        dispatch(reset());
+      } catch (error) {
+        toast.error(error.message);
+      }
+    }
+    fetchSinglePost();
+    dispatch(reset());
+  }
+
   return (
     <div className="overflow-x-auto">
       <Table hoverable>
@@ -65,7 +81,7 @@ const ListOfProjects = () => {
                   {project.title}
                 </Table.Cell>
                 <Table.Cell>
-                  <button className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
+                  <button onClick={()=>handleEdit(project._id)} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
                     Edit
                   </button>
                 </Table.Cell>
