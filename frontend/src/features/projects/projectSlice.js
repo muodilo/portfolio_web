@@ -4,6 +4,12 @@ import projectServices from './projectService';
 const initialState = {
   currentProjects: [],
   allProjects: [],
+
+  specificProject: {},
+  specificProjectLoading:false,
+  specificProjectSuccess:false,
+  specificProjectErrorMessage: '',
+  
   isCurrentProjectsLoading: false,
   isCurrentProjectsError: false,
   isCurrentProjectsSuccess:false,
@@ -41,6 +47,21 @@ export const getAllProjects = createAsyncThunk('project/getAllProjects', async (
     return thunkAPI.rejectWithValue(message);
   }
 })
+
+export const getProjectById = createAsyncThunk(
+  'project/getProjectById',
+  async (projectId, thunkAPI) => {
+    try {
+      return await projectServices.getProjectById(projectId);
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 
 export const createProject = createAsyncThunk('project/createProject', async (formData, thunkAPI) => {
