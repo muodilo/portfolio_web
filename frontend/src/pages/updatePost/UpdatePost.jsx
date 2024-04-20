@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { FloatingLabel } from 'flowbite-react';
 import { toast } from 'react-toastify';
-import { updatePost, reset } from '../../features/post/postSlice';
+import { getSpecificPost, reset } from '../../features/post/postSlice';
 import {logout} from '../../features/auth/authSlice'
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { FileInput, Label } from 'flowbite-react';
+import { formatDate } from 'date-fns';
 
 const UpdatePost = () => {
 
@@ -34,7 +36,6 @@ const UpdatePost = () => {
     title: postToUpdate ? postToUpdate.title : '',
     content: postToUpdate ? postToUpdate.content : '',
     category: postToUpdate ? postToUpdate.category : '',
-    image: null,
   });
 
   const handleInputChange = (e) => {
@@ -51,43 +52,31 @@ const UpdatePost = () => {
     });
   };
 
-  const handleImageChange = (e) => {
-    setFormData({
-      ...formData,
-      image: e.target.files[0],
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData)
+
+    
 
     try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        }
+      }
+      const postId = singlePost._id;
 
-      const formDataWithImage = new FormData();
-      formDataWithImage.append('title', formData.title);
-      formDataWithImage.append('content', formData.content);
-      formDataWithImage.append('category', formData.category);
-      formDataWithImage.append('image', formData.image);
+      const updatedPost = await axios.put(`http://localhost:5000/api/v1/posts/${postId}`, formData, config);
+      toast.success('Post updated successfully');
+      dispatch(getSpecificPost(postId))
 
+        navigate(`/blog/${singlePost._id}`);
       
-          // Dispatch createPost action and wait for its completion
-      const action = await dispatch(createPost(formDataWithImage));
-    // Check if the action is fulfilled (successfully dispatched)
-    if (createPost.fulfilled.match(action)) {
-      // If fulfilled, show success toast
-      toast.success('Post created');
-      navigate('/blog');
-    } else {
-      // If not fulfilled, handle error (e.g., show an error message to the user)
-      toast.error('Error creating post:', action.error.message);
-      console.error('Error creating post:', action.error.message);
-    }
-      // You can redirect to another page or update the UI as needed after successful post creation.
-    } catch (error) {
-      toast.error('Error creating post:', error.message);
-      console.error('Error creating post:', error.message);
-      // Handle error (e.g., show an error message to the user)
-    }
+
+  } catch (error) {
+    toast.error('Error updating post:', error.message);
+    console.error('Error updating post:', error.message);
+  }
   };
 
   const handleLogout = () => {
@@ -129,18 +118,6 @@ const UpdatePost = () => {
 
           />
 
-          <FloatingLabel
-            className='mb-5'
-            variant="standard"
-            label="Image"
-            id='image'
-            name='image'
-            type='file'
-            accept="image/*"
-            onChange={handleImageChange}
-            required 
-
-          />
 
         <div className="mb-3">
           <label htmlFor="content" className="form-label">Content:</label>

@@ -58,8 +58,8 @@ const updatePost = async (postId, postData, token) => {
   try {
     const config = {
       headers: {
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
       },
     };
 

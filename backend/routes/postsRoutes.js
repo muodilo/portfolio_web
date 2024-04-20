@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post('/', protect,checkAdmin,upload.single('image'),createPost);
-router.put('/:id', protect,checkAdmin,upload.single('image'),updatePost);
+router.put('/:id', protect,checkAdmin,updatePost);
 router.get('/', getAllPosts);
 router.get('/currentThreePosts', getCurrentThreePosts);
 router.get('/:id', getPostById);

@@ -107,6 +107,7 @@ export const updatePost = createAsyncThunk(
   'post/updatePost',
   async ({ postId, postData }, thunkAPI) => {
     try {
+      console.log(postData);
       const token = thunkAPI.getState().reducer.auth.user.token;
       const updatedPostData = await postServices.updatePost(postId, postData, token); // Call the updatePost service
       return updatedPostData; // Return the updated post data
