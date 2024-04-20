@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { RiMenu5Line } from "react-icons/ri";
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const TopNav = () => {
   // Load activeNav from localStorage on component mount
   const [activeNav, setActiveNav] = useState(localStorage.getItem('activeNav') || 'Home');
+
+  const { user } = useSelector(state => state.reducer.auth);
 
   // Update localStorage when activeNav changes
   useEffect(() => {
@@ -62,6 +65,13 @@ const TopNav = () => {
               Contact
             </Link>
           </li>
+          {user && user.role === 'admin' && (
+            <li className='me-5'>
+              <Link to='/dashboard' className={`text-xl font-bold hover:text-blue-900 transition ${activeNav === 'Dashboard' ? 'text-blue-900' : 'text-white'}`} onClick={() => setActiveNav('Dashboard')}>
+                Dashboard
+              </Link>
+            </li>
+          )}
         </ul>
 
         {/* book a call button */}
