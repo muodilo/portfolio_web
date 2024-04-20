@@ -13,6 +13,7 @@ import Login from "./pages/login/Login";
 import Contact from "./pages/contact/Contact";
 import Profile from "./pages/profile/Profile";
 import UpdatePost from "./pages/updatePost/UpdatePost";
+import SingleProject from "./pages/singleProject/SingleProject";
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/profile/:name' element={<Profile/>}/>
         <Route path='/posts/update/:id' element={<UpdatePost/>}/>
+        <Route path='/project/:id' element={<SingleProject/>}/>
         
       </Routes>
       <Footer />
