@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 
-const { createProject, getAllProjects, getCurrentThreeProjects } = require('../controllers/projectController.js');
+const { createProject, getAllProjects, getCurrentThreeProjects,updateProject ,getProjectById} = require('../controllers/projectController.js');
 
 const protect = require('../middleware/authMiddleware.js');
 
@@ -19,7 +19,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/', protect,checkAdmin,upload.single('image'),createProject);
+router.post('/', protect, checkAdmin, upload.single('image'), createProject);
+router.delete('/:id', protect, checkAdmin);
+router.put('/id', protect, checkAdmin, updateProject, getProjectById);
 router.get('/', getAllProjects);
 router.get('/currentThreeProjects', getCurrentThreeProjects);
 
