@@ -14,6 +14,7 @@ import Contact from "./pages/contact/Contact";
 import Profile from "./pages/profile/Profile";
 import UpdatePost from "./pages/updatePost/UpdatePost";
 import SingleProject from "./pages/singleProject/SingleProject";
+import ProjectPage from "./pages/projectPage/ProjectPage";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout/> } />
         <Route path='/blog' element={<BlogPage />} />
+        <Route path='/projects' element={<ProjectPage />} />
         <Route path='/blog/:id' element={<SinglePost />} />
         <Route path='/create-post' element={<CreatePost />} />
         <Route path='/create-project' element={<CreateProject />} />
