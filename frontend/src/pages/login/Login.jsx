@@ -27,7 +27,7 @@ const Login = () => {
 
     //redirect when logged in
     if (isSuccess && user) {
-      navigate(`/profile/${user.username}`);
+      navigate(`/dashboard`);
     }
 
     dispatch(resetUser());
