@@ -72,40 +72,57 @@ const getCurrentThreeProjects = asyncHandler(async (req, res) => {
   }
 });
 
-// const getPostById = asyncHandler(async (req, res) => {
-//   const postId = req.params.id;
-//   const post = await Post.findById(postId);
-//   if (!post) {
-//     res.status(404)
-//     throw new Error('post not found');
-//   }
+const deleteProject = asyncHandler(async (req, res) => {
+  try {
+    const projectId = req.params.id;
 
-//   res.status(200).json(post);
-// })
+    const deletedProject = await Project.findByIdAndDelete(projectId);
+
+    if (!deletedProject) {
+      res.status(404).json({ message: 'Project not found' });
+      return;
+    }
+    res.status(200).json({ message: 'Project deleted successfully', deletedProject });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+const updateProject = asyncHandler(async (req, res) => {
+  const projectId = req.params.id; // Get the project ID from the request parameters
+  const { title, url, githubUrl } = req.body;
+
+  try {
+    // Fetch the existing project from the database
+    let project = await Project.findById(projectId);
+    if (!project) {
+      res.status(404).json({ message: 'Project not found' });
+      return;
+    }
+
+    // Update only the fields provided in the request body
+    project.title = title || project.title;
+    project.url = url || project.url;
+    project.githubUrl = githubUrl || project.githubUrl;
+    project.image = project.image; // Assuming image is not updated in this function
+    
+    // Save the updated project
+    project = await project.save();
+
+    res.status(200).json({ message: 'Project updated successfully', project });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 
-// const getRelatedPosts = asyncHandler(async (req, res) => {
-//   const category = req.params.category;
-
-//   try {
-//     const posts = await Post.find({ category: category }).sort({ createdAt: -1 }).limit(3);
-
-//     if (!posts || posts.length === 0) {
-//       res.status(404).json({ error: 'No posts found for the specified category' });
-//       throw new Error('No posts found for the specific category');
-//     }
-
-//     res.status(200).json(posts);
-//   } catch (error) {
-//     console.error(error); 
-//     res.status(500);
-//     throw new Error('Internal Server Error')
-//   }
-// })
 
 module.exports = {
   createProject,
   getAllProjects,
-  getCurrentThreeProjects
+  getCurrentThreeProjects,
+  deleteProject,
+  updateProject,
 }
 
