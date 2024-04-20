@@ -116,6 +116,25 @@ const updateProject = asyncHandler(async (req, res) => {
   }
 });
 
+const getProjectById = asyncHandler(async (req, res) => {
+  const projectId = req.params.id; // Get the project ID from the request parameters
+
+  try {
+    // Find the project by ID in the database
+    const project = await Project.findById(projectId);
+
+    if (!project) {
+      res.status(404).json({ message: 'Project not found' });
+      return;
+    }
+
+    res.status(200).json(project);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
 
 
 module.exports = {
@@ -124,5 +143,6 @@ module.exports = {
   getCurrentThreeProjects,
   deleteProject,
   updateProject,
+  getProjectById
 }
 
