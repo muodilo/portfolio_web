@@ -11,7 +11,15 @@ const initialState = {
   isAllProjectsLoading: false,
   isAllProjectsError: false,
   isAllProjectsSuccess: false,
-  isAllProjectsErrorMessage:'',
+  isAllProjectsErrorMessage: '',
+  creatingProjectDoneMessage: '',
+  creatingProjectFailedMessage: '',
+  creatingProjectIsLoading:false,
+  deletingProjectDoneMessage: '',
+  deletingProjectFailedMessage: '',
+  deletingProjectIsLoading:false,
+  
+  
 }
 
 export const getCurrentThreeProjects = createAsyncThunk('project/getCurrentThreeProjects', async (_, thunkAPI) => {
@@ -48,6 +56,23 @@ export const createProject = createAsyncThunk('project/createProject', async (fo
   }
 })
 
+export const deleteProject = createAsyncThunk(
+  'project/deleteProject',
+  async (projectId, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().reducer.auth.user.token;
+      await projectServices.deleteProject(projectId, token);
+      return projectId; // Return the deleted project ID
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const projectSlice = createSlice({
   name: 'project',
   initialState,
@@ -61,7 +86,7 @@ export const projectSlice = createSlice({
       state.isAllProjectsError = false;
       state.isAllProjectsErrorMessage = '';
 
-      state.creaingProjectDoneMessage = '';
+      state.creatingProjectDoneMessage = '';
       state.creatingProjectFailedMessage = '';
       state.creatingProjectIsLoading = false;
 
@@ -105,12 +130,26 @@ export const projectSlice = createSlice({
       .addCase(createProject.fulfilled, (state,action) => {
         state.creatingProjectIsLoading= false;
         state.isSuccess = true;
-        state.creaingProjectDoneMessage= action.payload;
+        state.creatingProjectDoneMessage= action.payload;
       })
       .addCase(createProject.rejected, (state,action) => {
         state.creatingProjectIsLoading = false;
         state.isSuccess = false;
         state.creatingProjectFailedMessage= action.payload;
+      })
+    
+      .addCase(deleteProject.pending, (state) => {
+        state.deletingPostIsLoading = true;
+      })
+      .addCase(deleteProject.fulfilled, (state,action) => {
+        state.deletingProjectIsLoading= false;
+        state.isSuccess = true;
+        state.deletingProjectDoneMessage= action.payload;
+      })
+      .addCase(deleteProject.rejected, (state,action) => {
+        state.deletingProjectIsLoading = false;
+        state.isSuccess = false;
+        state.deletingProjectFailedMessage= action.payload;
       })
     
   }
