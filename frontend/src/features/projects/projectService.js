@@ -8,8 +8,14 @@ const GET_PROJECT_BY_ID_URL = 'http://localhost:5000/api/v1/projects';
 
 
 const getCurrentThreeProjects = async () => {
-  const response = await axios.get(GET_CURRENT_THREE_PROJECTS);
-  return response.data;
+  try {
+    const response = await axios.get(GET_CURRENT_THREE_PROJECTS);
+    return response.data;
+  } catch (error) {
+    // Handle errors, such as network issues or server errors
+    console.error('Error fetching current three projects:', error);
+    throw new Error('Failed to fetch current three projects');
+  }
 }
 
 const getProjectById = async (projectId) => {

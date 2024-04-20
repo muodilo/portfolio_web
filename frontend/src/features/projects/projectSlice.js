@@ -4,8 +4,8 @@ import projectServices from './projectService';
 const initialState = {
   currentProjects: [],
   allProjects: [],
-
   specificProject: {},
+
   specificProjectLoading:false,
   specificProjectSuccess:false,
   specificProjectErrorMessage: '',
@@ -36,7 +36,7 @@ export const getCurrentThreeProjects = createAsyncThunk('project/getCurrentThree
 
     return thunkAPI.rejectWithValue(message);
   }
-})
+});
 
 export const getAllProjects = createAsyncThunk('project/getAllProjects', async (_, thunkAPI) => {
   try {
@@ -111,6 +111,9 @@ export const projectSlice = createSlice({
       state.creatingProjectFailedMessage = '';
       state.creatingProjectIsLoading = false;
 
+      state.specificProjectLoading = false;
+      state.specificProjectErrorMessage = '';
+
 
     }
     
@@ -170,6 +173,18 @@ export const projectSlice = createSlice({
       .addCase(deleteProject.rejected, (state,action) => {
         state.deletingProjectIsLoading = false;
         state.isSuccess = false;
+        state.deletingProjectFailedMessage= action.payload;
+      })
+    
+      .addCase(getProjectById.pending, (state) => {
+        state.specificProjectLoading = true;
+      })
+      .addCase(getProjectById.fulfilled, (state,action) => {
+        state.specificProjectLoading= false;
+        state.specificProject= action.payload;
+      })
+      .addCase(getProjectById.rejected, (state,action) => {
+        state.specificProjectLoading = false;
         state.deletingProjectFailedMessage= action.payload;
       })
     

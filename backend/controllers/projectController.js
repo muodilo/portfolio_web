@@ -68,7 +68,7 @@ const getCurrentThreeProjects = asyncHandler(async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      error: 'Internal server error',
+      error: 'Internal server Error',
     });
   }
 });
@@ -148,6 +148,6 @@ module.exports = {
   getCurrentThreeProjects,
   deleteProjectById,
   updateProject,
-  getProjectById
+  getProjectById,
 }
 

@@ -20,9 +20,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post('/', protect, checkAdmin, upload.single('image'), createProject);
-router.delete('/:id', protect, checkAdmin,deleteProjectById);
-router.put('/id', protect, checkAdmin, updateProject, getProjectById);
-router.get('/', getAllProjects);
 router.get('/currentThreeProjects', getCurrentThreeProjects);
+router.delete('/:id', protect, checkAdmin,deleteProjectById);
+router.put('/id', protect, checkAdmin, updateProject);
+router.get('/', getAllProjects);
+router.get('/:id', getProjectById);
 
 module.exports = router;
