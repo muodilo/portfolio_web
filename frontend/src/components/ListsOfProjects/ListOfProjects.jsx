@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllProjects,reset } from "../../features/projects/projectSlice";
+import {deleteProject, getAllProjects,reset } from "../../features/projects/projectSlice";
 import { Table } from "flowbite-react";
 import { Spinner } from "flowbite-react";
+import { toast } from 'react-toastify';
 
 const ListOfProjects = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,22 @@ const ListOfProjects = () => {
 
     fetchData();
   }, [dispatch]);
+
+  const handleDeleteProject = async (postId) => {
+    try {
+      const confirmed = window.confirm("Are you sure you want to delete this post?");
+      if (confirmed) {
+        await dispatch(deleteProject(postId)); // Dispatch the deletePost action with postId and token
+        dispatch(getAllProjects());
+        toast.success('Post deleted successfully');
+        dispatch(reset());
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to delete post');
+      dispatch(reset());
+    }
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -53,7 +70,7 @@ const ListOfProjects = () => {
                   </button>
                 </Table.Cell>
                 <Table.Cell>
-                  <button className="font-medium text-red-700 hover:underline dark:text-cyan-500">
+                  <button onClick={()=>handleDeleteProject(project._id)} className="font-medium text-red-700 hover:underline dark:text-cyan-500">
                     Delete
                   </button>
                 </Table.Cell>

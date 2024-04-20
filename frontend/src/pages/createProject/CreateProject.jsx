@@ -8,6 +8,7 @@ import {logout} from '../../features/auth/authSlice'
 import { useSelector, useDispatch } from 'react-redux';
 import { FileInput, Label } from 'flowbite-react';
 import axios from 'axios';
+import {  Textarea } from "flowbite-react";
 
 const CreateProject = () => {
 
@@ -26,6 +27,7 @@ const CreateProject = () => {
   const [formData, setFormData] = useState({
     title: '',
     url: '',
+    description:'',
     githubUrl: '',
     image: null,
   });
@@ -54,6 +56,7 @@ const CreateProject = () => {
       formDataWithImage.append('title', formData.title);
       formDataWithImage.append('url', formData.url);
       formDataWithImage.append('githubUrl', formData.githubUrl);
+      formDataWithImage.append('description', formData.description);
       formDataWithImage.append('image', formData.image);
 
       console.log(formDataWithImage);
@@ -104,6 +107,12 @@ const CreateProject = () => {
             required 
 
           />
+
+
+            <div className='mb-5'>
+              <Label htmlFor="description" value="Description" />
+              <Textarea id='description' name='description' placeholder="Description..." required rows={7} value={formData.description}  onChange={handleInputChange} />
+            </div>
 
             <FloatingLabel
             className='mb-5'

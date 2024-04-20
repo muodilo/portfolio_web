@@ -3,9 +3,9 @@ const Project = require('../models/projectModel.js');
 
 
 const createProject = asyncHandler(async (req, res) => {
-  const { title,url,githubUrl } = req.body;
+  const { title,url,githubUrl,description } = req.body;
 
-  if (!title || !url || !githubUrl) {
+  if (!title || !url || !githubUrl || !description) {
     res.status(401);
     throw new Error('Please provide all fields');
   }
@@ -26,6 +26,7 @@ const createProject = asyncHandler(async (req, res) => {
       title,
       url,
       githubUrl,
+      description,
       image:imageUrl,
     })
 
@@ -72,26 +73,29 @@ const getCurrentThreeProjects = asyncHandler(async (req, res) => {
   }
 });
 
-const deleteProject = asyncHandler(async (req, res) => {
-  try {
-    const projectId = req.params.id;
+const deleteProjectById = asyncHandler(async (req, res) => {
+  const projectId = req.params.id;
 
-    const deletedProject = await Project.findByIdAndDelete(projectId);
+  // Find the project by ID in the database
+  const project = await Project.findById(projectId);
 
-    if (!deletedProject) {
-      res.status(404).json({ message: 'Project not found' });
-      return;
-    }
-    res.status(200).json({ message: 'Project deleted successfully', deletedProject });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+  // If project not found, return 404
+  if (!project) {
+    res.status(404).json({ message: 'Project not found' });
+    return;
   }
+
+  // Delete the project
+  await project.deleteOne();
+
+  // Respond with success message
+  res.status(200).json({ message: 'Project deleted successfully' });
 });
+
 
 const updateProject = asyncHandler(async (req, res) => {
   const projectId = req.params.id; // Get the project ID from the request parameters
-  const { title, url, githubUrl } = req.body;
+  const { title, url, githubUrl,description } = req.body;
 
   try {
     // Fetch the existing project from the database
@@ -104,6 +108,7 @@ const updateProject = asyncHandler(async (req, res) => {
     // Update only the fields provided in the request body
     project.title = title || project.title;
     project.url = url || project.url;
+    project.description = description || project.description;
     project.githubUrl = githubUrl || project.githubUrl;
     project.image = project.image; // Assuming image is not updated in this function
     
@@ -141,7 +146,7 @@ module.exports = {
   createProject,
   getAllProjects,
   getCurrentThreeProjects,
-  deleteProject,
+  deleteProjectById,
   updateProject,
   getProjectById
 }
