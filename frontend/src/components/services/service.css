@@ -2,7 +2,8 @@
   
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
-  background-image: url(https://images.pexels.com/photos/6192767/pexels-photo-6192767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  /* background-image: url(https://images.pexels.com/photos/6192767/pexels-photo-6192767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); */
+  background-image: url(https://images.pexels.com/photos/6825574/pexels-photo-6825574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
 }
 
 .service__title{

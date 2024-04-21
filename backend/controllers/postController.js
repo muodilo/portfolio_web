@@ -187,6 +187,24 @@ async function sendPostLinkToSubscriber(email, postId) {
   }
 }
 
+const getPostsByCategory = async (req, res) => {
+  const category = req.params.category; // Assuming category is passed as a route parameter
+
+  try {
+    // Find posts by category in the database
+    const posts = await Post.find({ category: category });
+
+    if (posts.length === 0) {
+      return res.status(404).json({ message: 'No posts found in this category' });
+    }
+
+    res.status(200).json(posts);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 
 module.exports = {
   createPost,
@@ -196,5 +214,6 @@ module.exports = {
   getRelatedPosts,
   deletePostById,
   updatePost,
+  getPostsByCategory,
 }
 

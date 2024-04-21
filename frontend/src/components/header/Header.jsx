@@ -1,5 +1,6 @@
 import './header.css';
 import M3 from '../../assets/odilo3.jpg'
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -10,7 +11,7 @@ const Header = () => {
           <h1 className="lg:text-[50px] md:text-[40px] text-[30px] font-bold mb-5 text-blue-900 ">Full Stack Alchemist: Weaving Magic with Code</h1>
           <p className="text-xl text-gray-600 mb-[30px]">Hello, I'm Odilo Murindahabi, a dedicated Full Stack Developer with a knack for turning ideas into captivating digital experiences. Through a blend of frontend finesse and backend wizardry, I bring simplicity and elegance to complex projects. Let's collaborate and bring your vision to life through the art of code.</p>
           <div>
-            <button className="btn  btn-neutral z-30">Book a call with me</button>
+            <Link to='/contact' className="btn  btn-neutral z-30">Contact me</Link>
 
           </div>
         </div>
@@ -18,7 +19,7 @@ const Header = () => {
         <div className="lg:col-span-2 md:col-span-1 flex items-center p-3">
           <div className='bg-blue-300/50 rounded-[20px]'>
 
-            <img src={ M3} alt="" className='rounded-[20px] shadow-2xl animate-in fade-in zoom-in duration-300 rotate-6 hover:rotate-0'/>
+            <img src={ M3} alt="" className='rounded-[20px] shadow-2xl animate-in fade-in zoom-in duration-300 md:rotate-3 rotate-0 hover:rotate-0'/>
           </div>
           
           

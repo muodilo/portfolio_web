@@ -13,7 +13,7 @@ const Services = () => {
               <h1 className="text-center text-[25px] text-blue-900 font-bold">Full Stack Development</h1>
             </div>
             <div>
-              <p className="text-slate-200 px-3 pt-5 pb-5 text-xl z-20">Expertise in both frontend and backend technologies, delivering comprehensive solutions. Proficient in languages such as JavaScript, Python, and Java, with experience in frameworks like React, Angular, and Node.js.</p>
+              <p className="text-slate-700 px-3 pt-5 pb-5 text-xl z-20">Expertise in both frontend and backend technologies, delivering comprehensive solutions. Proficient in languages such as JavaScript, Python, and Java, with experience in frameworks like React, Angular, and Node.js.</p>
             </div>
           </div>
           <div className="shadow-xl hover:shadow-none transition cursor-pointer service__card bg-slate-100">
@@ -21,7 +21,7 @@ const Services = () => {
               <h1 className="text-center text-[25px] text-blue-900 font-bold">Responsive Web Design</h1>
             </div>
             <div>
-              <p className="text-slate-200 px-3 pt-5 pb-5 text-xl">Crafting visually stunning and functional websites that seamlessly adapt to various devices. Skilled in responsive design frameworks, including Bootstrap, to ensure an optimal user experience.</p>
+              <p className="text-slate-700 px-3 pt-5 pb-5 text-xl">Crafting visually stunning and functional websites that seamlessly adapt to various devices. Skilled in responsive design frameworks, including Bootstrap, to ensure an optimal user experience.</p>
             </div>
           </div>
           <div className=" shadow-xl hover:shadow-none transition cursor-pointer service__card bg-slate-100">
@@ -29,7 +29,7 @@ const Services = () => {
               <h1 className="text-center text-[25px] text-blue-900 font-bold">Database Management</h1>
             </div>
             <div>
-              <p className="text-slate-200 px-3 pt-5 pb-5 text-xl">Proven ability in working with SQL and NoSQL databases. Expertise in database design, optimization, and management to support scalable and efficient applications.</p>
+              <p className="text-slate-700 px-3 pt-5 pb-5 text-xl">Proven ability in working with SQL and NoSQL databases. Expertise in database design, optimization, and management to support scalable and efficient applications.</p>
             </div>
           </div>
           <div className=" shadow-xl hover:shadow-none transition cursor-pointer service__card bg-slate-100">
@@ -37,7 +37,7 @@ const Services = () => {
               <h1 className="text-center text-[25px] text-blue-900 font-bold">API Development</h1>
             </div>
             <div>
-              <p className="text-slate-200 px-3 pt-5 pb-5 text-xl">Designing, implementing, and consuming robust APIs. Proficient in creating RESTful and GraphQL APIs to facilitate seamless communication between different components of an application.</p>
+              <p className="text-slate-700 px-3 pt-5 pb-5 text-xl">Designing, implementing, and consuming robust APIs. Proficient in creating RESTful and GraphQL APIs to facilitate seamless communication between different components of an application.</p>
             </div>
           </div>
           

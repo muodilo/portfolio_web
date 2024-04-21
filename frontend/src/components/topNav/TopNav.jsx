@@ -19,7 +19,7 @@ const TopNav = () => {
       <div className="flex items-center min-h-[70px] justify-between w-full px-[10px] md:px-0">
         {/* brand */}
         <div className="">
-          <Link to='/' className="text-3xl text-white font-bold">OD<span className="text-blue-900">ILO</span> </Link>
+          <Link to='/' className="text-3xl text-white font-bold">Odilo.<span className="text-blue-900"></span> </Link>
         </div>
 
         {/* nav Links */}
@@ -97,6 +97,13 @@ const TopNav = () => {
           <li className='me-5  transition'>
             <Link to='/contact'>Contact</Link>
           </li>
+          {user && user.role === 'admin' && (
+            <li className='me-5'>
+              <Link  to='/dashboard' className={` text-xl font-bold hover:text-blue-900 transition ${activeNav === 'Dashboard' ? 'text-blue-900' : 'text-white'}`} onClick={() => setActiveNav('Dashboard')}>
+                Dashboard
+              </Link>
+            </li>
+          )}
           </ul>
         </div>
       </div>
