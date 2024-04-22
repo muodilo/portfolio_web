@@ -66,9 +66,12 @@ const BlogsContainer = () => {
           {(activeCategory !== "all" && isPostsByCategoryLoading) && [1, 2, 3, 4, 5, 6].map((post, index) => (
             <SkeletonCard key={index} />
           ))}
-          {(activeCategory !== "all" && !isPostsByCategoryLoading && isPostsByCategorySuccess) && postsByCategory.map((post) => (
-            <BlogCard key={post._id} post={post} />
-          ))}
+          {(activeCategory !== "all" && !isPostsByCategoryLoading && isPostsByCategorySuccess) && (postsByCategory.length === 0 ? 
+            <p className="text-center text-gray-600 text-3xl mb-5">No posts found in {activeCategory} category.</p> :
+            postsByCategory.map((post) => (
+              <BlogCard key={post._id} post={post} />
+            ))
+          )}
         </div>
       </div>
     </section>
@@ -76,5 +79,6 @@ const BlogsContainer = () => {
 };
 
 export default BlogsContainer;
+
 
 

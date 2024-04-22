@@ -17,6 +17,7 @@ import UpdateProject from "./pages/updateProject/UpdateProject";
 import SingleProject from "./pages/singleProject/SingleProject";
 import ProjectPage from "./pages/projectPage/ProjectPage";
 import About from "./pages/about/About";
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
         <Route path='/posts/update/:id' element={<UpdatePost/>}/>
         <Route path='/projects/update/:id' element={<UpdateProject/>}/>
         <Route path='/project/:id' element={<SingleProject/>}/>
+        <Route path='*' element={<PageNotFound/>}/>
         
       </Routes>
       <Footer />
