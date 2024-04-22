@@ -1,15 +1,16 @@
 import axios from 'axios';
 
-const GET_CURRENT_THREE_PROJECTS = 'http://localhost:5000/api/v1/projects/currentThreeProjects';
 const GET_ALL_PROJECTS = 'http://localhost:5000/api/v1/projects';
 const CREATE_PROJECT_API_URL = 'http://localhost:5000/api/v1/projects';
 const DELETE_PROJECT_API_URL = 'http://localhost:5000/api/v1/projects';
 const GET_PROJECT_BY_ID_URL = 'http://localhost:5000/api/v1/projects';
 
+const BASE_API_URL = import.meta.env.REACT_APP_API_URL;
+
 
 const getCurrentThreeProjects = async () => {
   try {
-    const response = await axios.get(GET_CURRENT_THREE_PROJECTS);
+    const response = await axios.get(`${BASE_API_URL}/projects/currentThreeProjects`);
     return response.data;
   } catch (error) {
     // Handle errors, such as network issues or server errors
@@ -20,7 +21,7 @@ const getCurrentThreeProjects = async () => {
 
 const getProjectById = async (projectId) => {
   try {
-    const response = await axios.get(`${GET_PROJECT_BY_ID_URL}/${projectId}`);
+    const response = await axios.get(`${BASE_API_URL}/projects/${projectId}`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message || 'Failed to fetch project');
@@ -29,7 +30,7 @@ const getProjectById = async (projectId) => {
 
 
 const getAllProjects = async () => {
-  const response = await axios.get(GET_ALL_PROJECTS);
+  const response = await axios.get(`${BASE_API_URL}/projects`);
   return response.data;
 }
 
@@ -41,7 +42,7 @@ const createProject = async (formData, token) => {
       'Content-Type': 'multipart/form-data',
     }
   };
-  const response = await axios.post(CREATE_PROJECT_API_URL, formData, config);
+  const response = await axios.post(`${BASE_API_URL}/projects`, formData, config);
   return response.data;
 }
 
@@ -53,7 +54,7 @@ const deleteProject = async (projectId, token) => {
       },
     };
 
-    const response = await axios.delete(`${DELETE_PROJECT_API_URL}/${projectId}`, config);
+    const response = await axios.delete(`${BASE_API_URL}/projects/${projectId}`, config);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message || 'Failed to delete project');
