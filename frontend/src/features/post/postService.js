@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const GET_CURRENT_THREE_POSTS = 'http://localhost:5000/api/v1/posts/currentThreePosts';
 const GET_ALL_POSTS = 'http://localhost:5000/api/v1/posts';
+const GET_POSTS_BY_CATEGORY = 'http://localhost:5000/api/v1/posts/category';
 const GET_RELATED_POSTS = 'http://localhost:5000/api/v1/posts/related';
 const CREATE_POST_API_URL = 'http://localhost:5000/api/v1/posts'
 const DELETE_POST_API_URL = 'http://localhost:5000/api/v1/posts'
@@ -19,6 +20,10 @@ const getAllPosts = async () => {
 
 const getSpecificPost = async (id) => {
   const response = await axios.get(`${GET_ALL_POSTS}/${id}`);
+  return response.data;
+}
+const getPostsByCategory = async (category) => {
+  const response = await axios.get(`${GET_POSTS_BY_CATEGORY}/${category}`);
   return response.data;
 }
 
@@ -83,6 +88,7 @@ const postServices = {
   createPost,
   deletePost, 
   updatePost,
+  getPostsByCategory,
 }
 
 export default postServices;

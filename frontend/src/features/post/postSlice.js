@@ -4,6 +4,11 @@ import postServices from './postService';
 const initialState = {
   currentPosts: [],
   allPosts: [],
+  postsByCategory: [],
+  isPostsByCategoryLoading: false,
+  isPostsByCategorySuccess: false,
+  isPostsByCategoryFailMessage: '',
+  
   singlePost: {},
   relatedPosts:[],
   isCurrentPostsLoading: false,
@@ -58,6 +63,16 @@ export const getSpecificPost = createAsyncThunk('post/getSpecificPost', async (i
   try {
     return await postServices.getSpecificPost(id);
     
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+
+    return thunkAPI.rejectWithValue(message);
+  }
+})
+
+export const getPostByCategory = createAsyncThunk('get/getPostByCategory', async (category, thunkAPI) => {
+  try {
+    return await postServices.getPostsByCategory(category);
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
 
@@ -149,7 +164,10 @@ export const postSlice = createSlice({
 
       state.updatePostIsLoading = false;
       state.updatePostSuccess= false;
-      state.updatePostFailsMessage='';
+      state.updatePostFailsMessage = '';
+      
+      state.isPostsByCategoryLoading = false;
+      state.isPostsByCategoryFailMessage = '';
 
 
     }
@@ -253,6 +271,21 @@ export const postSlice = createSlice({
         state.updatePostIsLoading = false;
         state.updatePostSuccess = false;
         state.updatePostFailsMessage= action.payload;
+      })
+
+
+      .addCase(getPostByCategory.pending, (state) => {
+        state.isPostsByCategoryLoading = true;
+      })
+      .addCase(getPostByCategory.fulfilled, (state,action) => {
+        state.isPostsByCategoryLoading= false;
+        state.isPostsByCategorySuccess = true;
+        state.postsByCategory = action.payload;
+      })
+      .addCase(getPostByCategory.rejected, (state,action) => {
+        state.isPostsByCategoryLoading = false;
+        state.isPostsByCategorySuccess = false;
+        state.isPostsByCategoryFailMessage= action.payload;
       })
     
   }
