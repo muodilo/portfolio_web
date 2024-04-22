@@ -1,9 +1,5 @@
 import axios from 'axios';
 
-const GET_ALL_PROJECTS = 'http://localhost:5000/api/v1/projects';
-const CREATE_PROJECT_API_URL = 'http://localhost:5000/api/v1/projects';
-const DELETE_PROJECT_API_URL = 'http://localhost:5000/api/v1/projects';
-const GET_PROJECT_BY_ID_URL = 'http://localhost:5000/api/v1/projects';
 
 const BASE_API_URL = import.meta.env.REACT_APP_API_URL;
 

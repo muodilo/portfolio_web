@@ -1,10 +1,9 @@
 import axios from 'axios'
 
-const API_URL_register = 'http://localhost:5000/api/v1/users';
-const API_URL_login = 'http://localhost:5000/api/v1/users/login';
+const BASE_API_URL = import.meta.env.REACT_APP_API_URL;
 
 const register = async (userData) => {
-  const response = await axios.post(API_URL_register, userData);
+  const response = await axios.post(`${BASE_API_URL}/users`, userData);
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data));
@@ -16,7 +15,7 @@ const register = async (userData) => {
 const logout = async () => localStorage.removeItem('user');
 
 const login = async (userData) => {
-  const response = await axios.post(API_URL_login, userData);
+  const response = await axios.post(`${BASE_API_URL}/users/login`, userData);
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data));
