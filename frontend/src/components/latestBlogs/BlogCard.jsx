@@ -4,6 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSpecificPost, reset } from '../../features/post/postSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { SlShareAlt } from "react-icons/sl";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { MdCategory } from "react-icons/md";
+
+
 
 
 const BlogCard = ({ post }) => {
@@ -82,16 +87,16 @@ const BlogCard = ({ post }) => {
           onClick={handleClick}
         />
         <div className="p-6">
-          <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{post.category}</h2>
+          <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1 flex"><MdCategory className='me-1'/> {post.category}</h2>
           <h1 className="title-font text-lg font-medium text-gray-900 mb-3">{post.title}</h1>
           <div dangerouslySetInnerHTML={{ __html: truncateContent(post.content) }} className="leading-relaxed mb-3" />
           <div className="flex items-center justify-between">
-            <span className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">posted {postedTimeAgo}
+            <span className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"><FaRegCalendarAlt className='me-2'/>{postedTimeAgo}
             </span>
             <span>
               <button className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 ml-2" onClick={handleShare}
               >
-              Share
+                <SlShareAlt />
               </button>
             </span>
           </div>

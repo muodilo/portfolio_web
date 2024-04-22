@@ -16,7 +16,6 @@ const initialState = {
   isCurrentProjectsErrorMessage: '',
   isAllProjectsLoading: false,
   isAllProjectsError: false,
-  isAllProjectsSuccess: false,
   isAllProjectsErrorMessage: '',
   creatingProjectDoneMessage: '',
   creatingProjectFailedMessage: '',
@@ -121,7 +120,7 @@ export const projectSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCurrentThreeProjects.pending, (state) => {
-        state.isCurrentPostsLoading = true;
+        state.isCurrentProjectsLoading = true;
       })
       .addCase(getCurrentThreeProjects.fulfilled, (state,action) => {
         state.isCurrentProjectsLoading = false;
@@ -135,7 +134,7 @@ export const projectSlice = createSlice({
       })
 
       .addCase(getAllProjects.pending, (state) => {
-        state.isAllPostsLoading = true;
+        state.isAllProjectsLoading = true;
       })
       .addCase(getAllProjects.fulfilled, (state,action) => {
         state.isAllProjectsLoading = false;

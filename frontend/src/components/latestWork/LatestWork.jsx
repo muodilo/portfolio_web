@@ -15,16 +15,15 @@ const LatestWork = () => {
     const fetchData = async () => {
       try {
         await dispatch(getCurrentThreeProjects());
-        
+        dispatch(reset())
       } catch (error) {
         console.error(error);
-        
+        dispatch(reset())
 
       }
     };
 
     fetchData();
-    dispatch(reset())
   }, [dispatch]);
 
   const {currentProjects,isCurrentProjectsLoading,isCurrentProjectsSuccess} = useSelector(state=>state.reducer.project)
