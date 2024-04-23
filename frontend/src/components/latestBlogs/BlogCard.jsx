@@ -15,7 +15,8 @@ const BlogCard = ({ post }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isSinglePostErrorMessage} = useSelector(state => state.reducer.posts);
+  const { isSinglePostErrorMessage } = useSelector(state => state.reducer.posts);
+  const SERVER_URL = import.meta.env.REACT_APP_SERVER_URL;
 
   const handleClick = () => {
     const fetchSinglePost = async () => {
@@ -51,7 +52,7 @@ const BlogCard = ({ post }) => {
           await navigator.share({
             title: post.title,
             text: post.content,
-            url: `http://localhost:5173/blog/${post._id}`,
+            url: `${SERVER_URL}/blog/${post._id}`,
           });
         } else {
           console.error('Share API not supported');
