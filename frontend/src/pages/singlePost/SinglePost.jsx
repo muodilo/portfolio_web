@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getRelatedPosts, reset } from '../../features/post/postSlice';
 import { Link } from 'react-router-dom';
 import RelatedPostCard from './RelatedPostCard';
+import { BsExclamationTriangleFill } from "react-icons/bs";
 
 const SinglePost = () => {
   const dispatch = useDispatch();
@@ -39,9 +40,13 @@ const SinglePost = () => {
         <div className='px-5 pt-12 bg-slate-200'>
           <span className="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest mb-5">RELATED POSTS</span>
 
-          {filteredRelatedPosts.map(post => (
-            <RelatedPostCard key={post._id} post={post} />
-          ))}
+          {filteredRelatedPosts.length === 0 ? (
+            <p className="text-center text-gray-600 flex items-center mb-5"> < BsExclamationTriangleFill className='me-1'/> No related posts found.</p>
+          ) : (
+            filteredRelatedPosts.map(post => (
+              <RelatedPostCard key={post._id} post={post} />
+            ))
+          )}
         </div>
       </div>
     </div>
@@ -49,3 +54,4 @@ const SinglePost = () => {
 }
 
 export default SinglePost;
+
