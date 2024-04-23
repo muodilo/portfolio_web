@@ -7,6 +7,7 @@ import { useRef,useEffect } from 'react';
 import emailjs from '@emailjs/browser'
 import { FloatingLabel } from 'flowbite-react';
 import { Label, Textarea } from "flowbite-react";
+import { toast } from 'react-toastify';
 
 
 const Contact = () => {
@@ -33,6 +34,7 @@ const Contact = () => {
         },
     );
     e.target.reset()
+    toast.success(`Message sent! We've received your inquiry and will be in touch shortly.`);
   };
 
 

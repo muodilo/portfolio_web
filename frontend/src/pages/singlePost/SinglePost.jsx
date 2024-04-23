@@ -22,26 +22,61 @@ const SinglePost = () => {
   // Filter out the current post from related posts
   const filteredRelatedPosts = relatedPosts.filter(post => post._id !== singlePost._id);
 
+  const handleCopyCode = (code) => {
+    navigator.clipboard.writeText(code);
+  };
+
+  const renderContentWithCopyOption = () => {
+    // Split the content by code blocks
+    const blocks = content.split(/<pre class="ql-syntax".*?<\/pre>/g);
+
+    return blocks.map((block, index) => {
+      // Check if block is code or regular HTML
+      if (index % 2 === 0) {
+        // Regular HTML block
+        return <div key={index} dangerouslySetInnerHTML={{ __html: block }} />;
+      } else {
+        // Code block
+        const code = block.trim();
+        return (
+          <div key={index} className="code-block-container">
+            <pre>
+              <code>{code}</code>
+            </pre>
+            <button className="btn " onClick={() => handleCopyCode(code)}>
+              Copy
+            </button>
+          </div>
+        );
+      }
+    });
+  };
+
   return (
     <div className='px-0 md:px-[60px] lg:px-[100px]'>
       <div className='pt-[70px] grid lg:grid-cols-4 grid-cols-1'>
         <div className='col-span-3 p-5 h-svh overflow-auto'>
-          <Link to='/blog' className='btn btn-default '>Back</Link>
+          <Link to='/blog' className='btn btn-default'>Back</Link>
           <hr />
-          <p className='text-center '>{category}</p>
+          <p className='text-center'>{category}</p>
           <h1 className='text-center pt-5 md:text-[50px] text-[25px] font-bold'>{title}</h1>
 
           <div className='pt-5 shadow-2xl rounded-2xl'>
             <img src={image} alt="image" className='rounded-2xl w-full' />
           </div>
-          <div className='pt-5' dangerouslySetInnerHTML={{ __html: content }} />
+          <div className='pt-5'>
+            {/* Render content with copy option */}
+            {renderContentWithCopyOption()}
+          </div>
         </div>
 
         <div className='px-5 pt-12 bg-slate-200'>
           <span className="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest mb-5">RELATED POSTS</span>
 
           {filteredRelatedPosts.length === 0 ? (
-            <p className="text-center text-gray-600 flex items-center mb-5"> < BsExclamationTriangleFill className='me-1'/> No related posts found.</p>
+            <p className="text-center text-gray-600 flex items-center mb-5">
+              <BsExclamationTriangleFill className='me-1' /> No related posts found.
+            </p>
           ) : (
             filteredRelatedPosts.map(post => (
               <RelatedPostCard key={post._id} post={post} />
@@ -54,4 +89,3 @@ const SinglePost = () => {
 }
 
 export default SinglePost;
-

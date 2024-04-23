@@ -95,7 +95,8 @@ const CreatePost = () => {
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [{ 'list': 'ordered' }, { 'list': 'bullet', 'indent': '-1' }, { 'indent': '+1' }],
-      ['link', 'image'],
+      ['link', 'image','code-block'],
+      [{ 'video': 'Insert Video' }],
       ['clean']
     ],
   }
@@ -104,7 +105,8 @@ const CreatePost = () => {
     'header',
     'bold', 'italic', 'underline', 'strike', 'blockquote',
     'list', 'bullet', 'indent',
-    'link','image'
+    'link', 'image','code-block',
+    'video',
   ]
 
   return (
