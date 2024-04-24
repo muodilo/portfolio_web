@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
+import { formatDistanceToNow } from 'date-fns';
 import { useSelector, useDispatch } from 'react-redux';
 import { getRelatedPosts, reset } from '../../features/post/postSlice';
 import { Link } from 'react-router-dom';
 import RelatedPostCard from './RelatedPostCard';
 import { BsExclamationTriangleFill } from "react-icons/bs";
+import { SlShareAlt } from "react-icons/sl";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 
 const SinglePost = () => {
   const dispatch = useDispatch();
   const { relatedPosts, singlePost } = useSelector(state => state.reducer.posts);
-  const { title, content, image, category } = singlePost;
+  const { title, content, image, category,createdAt } = singlePost;
 
   useEffect(() => {
     const fetchRelatedPosts = async () => {
@@ -21,6 +25,30 @@ const SinglePost = () => {
 
   // Filter out the current post from related posts
   const filteredRelatedPosts = relatedPosts.filter(post => post._id !== singlePost._id);
+  
+  const postedTimeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
+  const SERVER_URL = import.meta.env.REACT_APP_SERVER_URL;
+
+  const handleShare = () => {
+
+    const share = async () => {
+      
+      try {
+        if (navigator.share) {
+          await navigator.share({
+            title: title,
+            text:content,
+            url: `${SERVER_URL}/blog/${singlePost._id}`,
+          });
+        } else {
+          console.error('Share API not supported');
+        }
+      } catch (error) {
+        console.error('Error sharing:', error.message);
+      }
+    }
+    share();
+  };
 
   const handleCopyCode = (code) => {
     navigator.clipboard.writeText(code);
@@ -52,6 +80,10 @@ const SinglePost = () => {
     });
   };
 
+  const handleClick = () => {
+    window.scrollTo(0, 0);
+  }
+
   return (
     <div className='px-0 md:px-[60px] lg:px-[100px]'>
       <div className='pt-[70px] grid lg:grid-cols-4 grid-cols-1'>
@@ -60,7 +92,18 @@ const SinglePost = () => {
           <hr />
           <p className='text-center'>{category}</p>
           <h1 className='text-center pt-5 md:text-[50px] text-[25px] font-bold'>{title}</h1>
-
+          <div className='flex items-center justify-around'>
+            <div className='flex items-center '>
+              <FaUserCircle className='me-1 text-slate-500' />
+              <p className='text-indigo-500'>By Odilo</p>
+            </div>
+          <span className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 me-10"><FaRegCalendarAlt className='me-1'/>{postedTimeAgo}
+            </span>
+            <button className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 ml-2" onClick={handleShare}
+              >
+                <SlShareAlt />
+            </button>
+          </div>
           <div className='pt-5 shadow-2xl rounded-2xl'>
             <img src={image} alt="image" className='rounded-2xl w-full' />
           </div>
@@ -79,7 +122,7 @@ const SinglePost = () => {
             </p>
           ) : (
             filteredRelatedPosts.map(post => (
-              <RelatedPostCard key={post._id} post={post} />
+              <RelatedPostCard key={post._id} post={post} onClick={handleClick } />
             ))
           )}
         </div>

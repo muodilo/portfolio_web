@@ -31,7 +31,7 @@ const ProjectHeader = () => {
       <div className="bg-green-100/50 pt-[70px] rounded-lg text-center md:pt-40  md:pb-20 pb-5 shadow">
         <div>
           <h1 className="lg:text-[50px] md:text-[40px] text-[30px] font-bold mb-5 text-blue-900 animate-in fade-in zoom-in duration-300 pt-3">My Projects</h1>
-          <p className="text-xl mb-6 animate-in fade-in zoom-in duration-300">Discover my portfolio showcasing web development, business ventures, and content creation.</p>
+          <p className="text-xl mb-6 animate-in fade-in zoom-in duration-300">Discover my portfolio showcasing Projects.</p>
         </div>
       </div>
     </section>

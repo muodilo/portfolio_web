@@ -19,7 +19,7 @@ const TopNav = () => {
       <div className="flex items-center min-h-[70px] justify-between w-full px-[10px] md:px-0">
         {/* brand */}
         <div className="">
-          <Link to='/' className="text-3xl text-white font-bold">Odilo.<span className="text-blue-900"></span> </Link>
+          <Link to='/' className="text-3xl text-white font-bold">OD<span className="text-blue-900">ILO</span> </Link>
         </div>
 
         {/* nav Links */}
